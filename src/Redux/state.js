@@ -4,7 +4,7 @@ let state = {
    profilePage: {
       myPosts : {
          newPost : {
-            text : '',
+            text : 'dq',
          },
 
          posts : [
@@ -55,18 +55,20 @@ let state = {
 }
 
 let addText = (text) => {
-   debugger
-   state.profilePage.myPosts.newPost.text += text;
+   
+   state.profilePage.myPosts.newPost.text = text;
    rerenderEntireTree(state);
 }
 
 let addPost = (text) => {
+   debugger;
    let newPost = {
       id: state.profilePage.myPosts.posts.length + 1,
       message: text,
       likesCount: 0,
    }
    state.profilePage.myPosts.posts.push(newPost);
+   state.profilePage.myPosts.newPost.text = '';
    rerenderEntireTree(state);
 }
 

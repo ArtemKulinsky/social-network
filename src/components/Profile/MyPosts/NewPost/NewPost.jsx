@@ -6,24 +6,21 @@ const NewPost = (props) => {
   
   let addPost = (e) => {
     e.preventDefault();
-    let text = newPostElement.current.value;
-    props.addPost(text);
+    let text = props.newPost.text;
 
-    newPostElement.current.value = ""
+    props.addPost(text);
   }
 
   let addText = (e) => {
-    if(e.code !== 'Enter'  && e.code !== 'Backspace'&& e.code !== 'Tab') {
-      props.addText(e.key);
-      e.preventDefault();
-      return
-    }
+    debugger;
+    let text = newPostElement.current.value;
+    props.addText(text);
   }
 
   return (
     <div className={s.newPost}>
       <form className={s.newPostAddNews}>
-        <textarea onKeyDown={ addText } ref={ newPostElement } value={props.newPost.text} placeholder="your news..."></textarea>
+        <textarea onChange={ addText } ref={ newPostElement } value={props.newPost.text} placeholder="your news..."></textarea>
         <button onClick={ addPost } >Send</button>
       </form>
     </div>
