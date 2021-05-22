@@ -1,0 +1,24 @@
+.dialogs {
+   display: flex;
+   flex-direction: column;
+   padding: 10px;
+   height: 100%;
+}
+
+.title {
+   font-family: cursive;
+   font-size: 28px;
+   font-weight: 900;
+   margin: 0 0 20px 0;
+}
+
+.dialogsBody {
+   justify-self: stretch;
+   display: flex;
+   flex: 1 1 auto;
+}
+
+.dialogsItems {
+   flex: 0 0 35%;
+   border-right: 2px solid #df3383;
+}

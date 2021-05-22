@@ -1,0 +1,17 @@
+.items {
+  margin: 0 0 100px 0;
+}
+
+.item {
+  margin: 0 0 5px 0;
+}
+
+.item a {
+  display: block;
+  color: #fff;
+text-decoration: none;
+}
+
+.item a.active {
+  color: rgb(225, 240, 16);
+}

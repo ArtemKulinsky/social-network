@@ -1,0 +1,22 @@
+.myPosts__addNews  {
+  display: flex;
+  flex-direction: column;
+}
+
+.myPosts__addNews input{
+  margin: 0 0 10px 5px;
+  width: 80%;
+}
+
+.newPostAddNews  {
+  display: flex;
+  flex-direction: column;
+}
+
+.newPostAddNews textarea{
+
+}
+
+.newPostAddNews button{
+  align-self: flex-end;
+}

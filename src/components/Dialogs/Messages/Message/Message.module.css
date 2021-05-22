@@ -1,0 +1,29 @@
+.message {
+   display: flex;
+   padding: 20px 0 20px 0;
+}
+
+.message.user{
+   flex-direction: row-reverse;
+}
+
+.message.opponent {
+
+}
+
+.messageImage {
+   flex-shrink: 0;
+   align-self: flex-start;
+   width: 50px;
+   height: 50px;
+   border-radius: 50%;
+   background-color: #e70e0e;
+}
+
+.messageText {
+   align-self: flex-end;
+   margin: 0 20px 0 20px;
+   font-size: 18px;
+   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+
+}

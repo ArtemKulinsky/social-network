@@ -1,0 +1,22 @@
+.aside {
+  grid-area: aside;
+  background-color: brown;
+  padding: 10px;
+}
+
+.friends {
+  display: flex;
+}
+
+.friend {
+  display: flex;
+  flex: 0 0 33%;
+  flex-direction: column;
+}
+
+.friendImage {
+  width: 50px;
+  height: 50px;
+}
+
+.friendName {}

@@ -1,0 +1,28 @@
+.dialog {
+   display: flex;
+   padding: 12px 0 12px 0;
+   text-decoration: none;
+   color: #f58b34;
+   align-items: center;
+}
+
+.dialog:hover {
+   background-color: #3e78f5;
+   color: #fff;
+}
+
+.dialogImage {
+   width: 40px;
+   height: 40px;
+   margin: 0 0 0 10px;
+   border-radius: 50%;
+   background-color: #111394;
+}
+
+.dialogName {
+   padding: 0 0 0 10px;
+   font-size: 20px;
+   font-weight: 500;
+   font-family: monospace;
+   text-decoration: none;
+}

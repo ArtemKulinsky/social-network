@@ -1,0 +1,7 @@
+.profileHeader {}
+
+.profileHeader img{
+  display: block;
+  height: 250px;
+  min-width: 100%;
+}

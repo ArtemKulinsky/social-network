@@ -1,0 +1,12 @@
+.header {
+  position: relative;
+  overflow: hidden;
+  grid-area: header;
+  background-color: green;
+} 
+
+.header img {
+  position: absolute;
+  top: -230%;
+  min-width: 100%;
+}

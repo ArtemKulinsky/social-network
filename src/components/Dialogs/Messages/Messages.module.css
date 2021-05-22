@@ -1,0 +1,33 @@
+.messages {
+
+}
+
+.messagesArea {
+   display: flex;
+   flex-direction: column-reverse;
+   flex-grow: 0;
+   max-height: 600px;
+   width: 100%;   
+   padding: 20px 25px 10px 25px;
+   overflow: auto;
+}
+
+.messageAddNew {
+   padding: 20px;
+}
+
+.addForm {
+   display: flex;
+   justify-content: space-between;
+   height: 80px;
+}
+
+.textarea {
+   flex: 0 1 80%;
+   resize: none;
+}
+
+.addButton {
+   align-self: center;
+   padding: 10px;
+}
