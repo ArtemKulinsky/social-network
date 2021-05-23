@@ -17,13 +17,11 @@ const Dialogs = (props) => {
                   props.dialogsPage.dialogs.map((dialog)=> <Dialog id={dialog.id} name={dialog.name} />)
                }
             </div>
-            <Route path="/dialogs/1" render={ () => <Messages addNewMessageText={props.addNewMessageText} 
-               addMessage={props.addMessage} 
-               dialogsPage={props.dialogsPage} 
+            <Route path="/dialogs/1" render={ () => <Messages  dispatch={props.dispatch}
+                                                               dialogsPage={props.dialogsPage} 
             /> } />
-            <Route path="/dialogs/2" render={ () => <Messages addNewMessageText={props.addNewMessageText} 
-               addMessage={props.addMessage} 
-               dialogsPage={props.dialogsPage} /> } />
+            <Route path="/dialogs/2" render={ () => <Messages  dispatch={props.dispatch}
+                                                               dialogsPage={props.dialogsPage} /> } />
          </div>
       </div>
    )

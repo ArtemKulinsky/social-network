@@ -9,14 +9,21 @@ const Messages = (props) => {
 
    let addMessage = (event) => {
       event.preventDefault();
-      
-      let text = props.dialogsPage.newMessage.text;
-      props.addMessage(text);
+      let action = {
+         type: "ADD-MESSAGE",
+      }
+
+      props.dispatch(action);
    }
 
    let addNewMessageText = () => {
-      let text = newMessageElement.current.value;
-      props.addNewMessageText(text);
+      let newText = newMessageElement.current.value;
+      let action = {
+         type: "ADD-NEW-MESSAGE-TEXT",
+         newText: newText,
+      }
+
+      props.dispatch(action)
    }
 
    return (

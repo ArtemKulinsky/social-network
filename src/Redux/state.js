@@ -104,6 +104,36 @@ let store = {
    subcriber(observer){
       this._rerenderEntireTree = observer;
    },
+
+   dispatch(action) {
+      if(action.type === "ADD-POST") {
+         let newPost = {
+         id: this._state.profilePage.myPosts.posts.length + 1,
+         message: this._state.profilePage.myPosts.newPost.text,
+         likesCount: 0,
+         }
+
+         this._state.profilePage.myPosts.posts.push(newPost);
+         this._state.profilePage.myPosts.newPost.text = '';
+         this._rerenderEntireTree();
+      } else if(action.type === "ADD-NEW-POST-TEXT") {
+         this._state.profilePage.myPosts.newPost.text = action.newText;
+         this._rerenderEntireTree();
+      } else if(action.type === "ADD-MESSAGE") {
+         let newMessage = {
+         id: this._state.dialogsPage.messages.length + 1,
+         message: this._state.dialogsPage.newMessage.text,
+         belong: 'user',
+      }
+
+      this._state.dialogsPage.messages.unshift(newMessage);
+      this._state.dialogsPage.newMessage.text = '';
+      this._rerenderEntireTree()
+      } else if (action.type === "ADD-NEW-MESSAGE-TEXT") {
+         this._state.dialogsPage.newMessage.text = action.newText;
+         this._rerenderEntireTree();
+      }
+   }  
 }
 
 export default store;

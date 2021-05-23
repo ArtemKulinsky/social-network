@@ -7,13 +7,24 @@ const NewPost = (props) => {
   let addPost = (e) => {
     e.preventDefault();
 
-    let text = props.newPost.text;
-    props.addPost(text);
+    let action = {
+      type: "ADD-POST",
+    }
+
+    props.dispatch(action);
+    // let text = props.newPost.text;
+    // props.addPost(text);
   }
 
   let addNewPostText = () => {
-    let text = newPostElement.current.value;
-    props.addNewPostText(text);
+    debugger;
+    let newText = newPostElement.current.value;
+    let action = {
+      type: "ADD-NEW-POST-TEXT",
+      newText: newText,
+    }
+
+    props.dispatch(action);
   }
 
   return (
