@@ -1,10 +1,12 @@
-import { rerenderEntireTree } from "../render";
+let rerenderEntireTree = () => {
+
+}
 
 let state = {
    profilePage: {
       myPosts : {
          newPost : {
-            text : 'dq',
+            text : 'dqwd',
          },
 
          posts : [
@@ -27,19 +29,23 @@ let state = {
       ],
 
       messages : [
-         {id: 1, text :"Пошел нахуй пидорас гнилой сдохни тварь", belong: 'user',},
-         {id: 2, text :"Возвращай три сотки, хуйло!Возвращай три сотки, хуйло!Возвращай три сотки, хуйло!Возвращай три сотки, хуйло!Возвращай три сотки, хуйло!Возвращай три сотки, хуйло!Возвращай три сотки, хуйло!Возвращай три сотки, хуйло!Возвращай три сотки, хуйло!Возвращай три сотки, хуйло!Возвращай три сотки, хуйло!", belong: 'opponent',},
-         {id: 3, text :"Я те говорю занят я", belong: 'user',},
-         {id: 4, text :"Когда сможешь?", belong: 'opponent',},
-         {id: 5, text :"Я сейчас занят", belong: 'user',},
-         {id: 6, text :"Верни 3 сотки", belong: 'opponent',},
-         {id: 1, text :"Пошел нахуй пидорас гнилой сдохни тварь", belong: 'user',},
-         {id: 2, text :"Возвращай три сотки, хуйло!Возвращай три сотки, хуйло!Возвращай три сотки, хуйло!Возвращай три сотки, хуйло!Возвращай три сотки, хуйло!Возвращай три сотки, хуйло!Возвращай три сотки, хуйло!Возвращай три сотки, хуйло!Возвращай три сотки, хуйло!Возвращай три сотки, хуйло!Возвращай три сотки, хуйло!", belong: 'opponent',},
-         {id: 3, text :"Я те говорю занят я", belong: 'user',},
-         {id: 4, text :"Когда сможешь?", belong: 'opponent',},
-         {id: 5, text :"Я сейчас занят", belong: 'user',},
-         {id: 6, text :"Верни 3 сотки", belong: 'opponent',},
-      ]
+         {id: 1, message :"Пошел нахуй пидорас гнилой сдохни тварь", belong: 'user',},
+         {id: 2, message :"Возвращай три сотки, хуйло!Возвращай три сотки, хуйло!Возвращай три сотки, хуйло!Возвращай три сотки, хуйло!Возвращай три сотки, хуйло!Возвращай три сотки, хуйло!Возвращай три сотки, хуйло!Возвращай три сотки, хуйло!Возвращай три сотки, хуйло!Возвращай три сотки, хуйло!Возвращай три сотки, хуйло!", belong: 'opponent',},
+         {id: 3, message :"Я те говорю занят я", belong: 'user',},
+         {id: 4, message :"Когда сможешь?", belong: 'opponent',},
+         {id: 5, message :"Я сейчас занят", belong: 'user',},
+         {id: 6, message :"Верни 3 сотки", belong: 'opponent',},
+         {id: 7, message :"Пошел нахуй пидорас гнилой сдохни тварь", belong: 'user',},
+         {id: 8, message :"Возвращай три сотки, хуйло!Возвращай три сотки, хуйло!Возвращай три сотки, хуйло!Возвращай три сотки, хуйло!Возвращай три сотки, хуйло!Возвращай три сотки, хуйло!Возвращай три сотки, хуйло!Возвращай три сотки, хуйло!Возвращай три сотки, хуйло!Возвращай три сотки, хуйло!Возвращай три сотки, хуйло!", belong: 'opponent',},
+         {id: 9, message :"Я те говорю занят я", belong: 'user',},
+         {id: 10, message :"Когда сможешь?", belong: 'opponent',},
+         {id: 11, message :"Я сейчас занят", belong: 'user',},
+         {id: 12, message :"Верни 3 сотки", belong: 'opponent',},
+      ],
+
+      newMessage: {
+         text: '',
+      }
    },
 
    aside: {
@@ -54,27 +60,50 @@ let state = {
    },
 }
 
-let addText = (text) => {
-   
+const addNewPostText = (text) => {
    state.profilePage.myPosts.newPost.text = text;
-   rerenderEntireTree(state);
+   rerenderEntireTree();
 }
 
-let addPost = (text) => {
-   debugger;
+const addPost = (text) => {
    let newPost = {
       id: state.profilePage.myPosts.posts.length + 1,
       message: text,
       likesCount: 0,
    }
+
    state.profilePage.myPosts.posts.push(newPost);
    state.profilePage.myPosts.newPost.text = '';
-   rerenderEntireTree(state);
+   rerenderEntireTree();
+}
+
+const addMessage = (text) => {
+   let newMessage = {
+      id:state.dialogsPage.messages.length + 1,
+      message: text,
+      belong: 'user',
+   }
+
+   state.dialogsPage.messages.unshift(newMessage);
+   state.dialogsPage.newMessage.text = '';
+   rerenderEntireTree()
+}
+
+const addNewMessageText = (text) => {
+   state.dialogsPage.newMessage.text = text;
+   rerenderEntireTree();
+}
+
+const give = (func) => {
+   rerenderEntireTree = func;
 }
 
 export {
    state,
    addPost,
-   addText,
+   addNewPostText,
+   addMessage,
+   addNewMessageText,
+   give,
 };
 

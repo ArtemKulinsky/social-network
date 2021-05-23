@@ -6,21 +6,23 @@ const NewPost = (props) => {
   
   let addPost = (e) => {
     e.preventDefault();
-    let text = props.newPost.text;
 
+    let text = props.newPost.text;
     props.addPost(text);
   }
 
-  let addText = (e) => {
-    debugger;
+  let addNewPostText = () => {
     let text = newPostElement.current.value;
-    props.addText(text);
+    props.addNewPostText(text);
   }
 
   return (
     <div className={s.newPost}>
       <form className={s.newPostAddNews}>
-        <textarea onChange={ addText } ref={ newPostElement } value={props.newPost.text} placeholder="your news..."></textarea>
+        <textarea onChange={ addNewPostText }
+                  ref={ newPostElement } 
+                  value={props.newPost.text} 
+                  placeholder="your news..."></textarea>
         <button onClick={ addPost } >Send</button>
       </form>
     </div>

@@ -15,10 +15,14 @@ function App(props) {
         <Aside aside={props.appState.aside} ></Aside>
         <div className="content">
           <Route path="/profile" 
-            render={ () => <Profile addPost={ props.addPost } addText={props.addText} profilePage={props.appState.profilePage} /> } />
+            render={ () => <Profile addPost={ props.addPost } 
+                                    addNewPostText={props.addNewPostText} 
+                                    profilePage={props.appState.profilePage} /> } />
           
           <Route path="/dialogs" 
-            render={ () => <Dialogs dialogsPage={props.appState.dialogsPage} />} />
+            render={ () => <Dialogs addNewMessageText={props.addNewMessageText} 
+                                    addMessage={props.addMessage} 
+                                    dialogsPage={props.appState.dialogsPage} />} />
           
           <Route path="/news" component={ Profile } />
           <Route path="/music" component={ Profile } />

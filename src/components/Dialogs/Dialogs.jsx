@@ -5,6 +5,7 @@ import s from './Dialogs.module.css';
 import Messages from './Messages/Messages';
 
 const Dialogs = (props) => {
+   debugger;
    return (
       <div className={s.dialogs}>
          <div className={s.title}>
@@ -16,8 +17,13 @@ const Dialogs = (props) => {
                   props.dialogsPage.dialogs.map((dialog)=> <Dialog id={dialog.id} name={dialog.name} />)
                }
             </div>
-            <Route path="/dialogs/1" render={ () => <Messages messages={props.dialogsPage.messages} /> } />
-            <Route path="/dialogs/2" render={ () => <Messages messages={props.dialogsPage.messages} /> } />
+            <Route path="/dialogs/1" render={ () => <Messages addNewMessageText={props.addNewMessageText} 
+               addMessage={props.addMessage} 
+               dialogsPage={props.dialogsPage} 
+            /> } />
+            <Route path="/dialogs/2" render={ () => <Messages addNewMessageText={props.addNewMessageText} 
+               addMessage={props.addMessage} 
+               dialogsPage={props.dialogsPage} /> } />
          </div>
       </div>
    )
