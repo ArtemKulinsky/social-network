@@ -1,4 +1,5 @@
 import React from 'react';
+import { addMessageActionCreator, updateNewMessageTextACtionCreator } from '../../../Redux/state';
 import Message from './Message/Message';
 import s from './Messages.module.css';
 
@@ -9,21 +10,12 @@ const Messages = (props) => {
 
    let addMessage = (event) => {
       event.preventDefault();
-      let action = {
-         type: "ADD-MESSAGE",
-      }
-
-      props.dispatch(action);
+      props.dispatch(addMessageActionCreator());
    }
 
    let addNewMessageText = () => {
-      let newText = newMessageElement.current.value;
-      let action = {
-         type: "ADD-NEW-MESSAGE-TEXT",
-         newText: newText,
-      }
-
-      props.dispatch(action)
+      let text = newMessageElement.current.value;
+      props.dispatch(updateNewMessageTextACtionCreator(text));
    }
 
    return (

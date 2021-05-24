@@ -1,3 +1,9 @@
+const ADD_POST = "ADD-POST";
+const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
+const ADD_MESSAGE = "ADD-MESSAGE";
+const UPDATE_NEW_MESSAGE_TEXT = "UPDATE-NEW-MESSAGE-TEXT"; 
+///Чтобы не ошибиться в action.type выносим его action.type в константы. IDE подскажет ошибку.
+
 let store = {
    _state : {
       profilePage: {
@@ -106,7 +112,7 @@ let store = {
    },
 
    dispatch(action) {
-      if(action.type === "ADD-POST") {
+      if(action.type === ADD_POST) {
          let newPost = {
          id: this._state.profilePage.myPosts.posts.length + 1,
          message: this._state.profilePage.myPosts.newPost.text,
@@ -116,10 +122,10 @@ let store = {
          this._state.profilePage.myPosts.posts.push(newPost);
          this._state.profilePage.myPosts.newPost.text = '';
          this._rerenderEntireTree();
-      } else if(action.type === "ADD-NEW-POST-TEXT") {
+      } else if(action.type === UPDATE_NEW_POST_TEXT) {
          this._state.profilePage.myPosts.newPost.text = action.newText;
          this._rerenderEntireTree();
-      } else if(action.type === "ADD-MESSAGE") {
+      } else if(action.type === ADD_MESSAGE) {
          let newMessage = {
          id: this._state.dialogsPage.messages.length + 1,
          message: this._state.dialogsPage.newMessage.text,
@@ -129,11 +135,21 @@ let store = {
       this._state.dialogsPage.messages.unshift(newMessage);
       this._state.dialogsPage.newMessage.text = '';
       this._rerenderEntireTree()
-      } else if (action.type === "ADD-NEW-MESSAGE-TEXT") {
+      } else if (action.type === UPDATE_NEW_MESSAGE_TEXT) {
          this._state.dialogsPage.newMessage.text = action.newText;
          this._rerenderEntireTree();
       }
    }  
 }
+
+export const addPostActionCreator = () => ({ type: ADD_POST });
+
+export const updateNewPostTextActionCreator = (text) => 
+  ({ type: UPDATE_NEW_POST_TEXT, newText: text })
+
+export const addMessageActionCreator = () => ({ type: ADD_MESSAGE })
+
+export const updateNewMessageTextACtionCreator = (text) => 
+   ({ type: UPDATE_NEW_MESSAGE_TEXT, newText: text })
 
 export default store;
