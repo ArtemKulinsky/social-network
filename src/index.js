@@ -1,20 +1,20 @@
 import React from 'react';
 import reactDom from 'react-dom'; 
+import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import './index.css';
 import store from './Redux/redux-store';
 import reportWebVitals from './reportWebVitals';
-
+import { Provider } from './store-context';
+// debugger;
 export let rerenderEntireTree = (state) => {
    reactDom.render(
       <React.StrictMode>
-      <App  appState={ state } 
-            dispatch={ store.dispatch.bind(store) }
-            // addNewMessageText={ (store.addNewMessageText).bind(store) } 
-            // addMessage={ store.addMessage.bind(store) } 
-            // addNewPostText={ store.addNewPostText.bind(store)} 
-            // addPost={ store.addPost.bind(store) }
-      />
+      <BrowserRouter>
+         <Provider store={store}>
+            <App  appState={ state } dispatch={ store.dispatch.bind(store) } />
+         </Provider>
+      </BrowserRouter>
       </React.StrictMode>,
       document.getElementById('root')
    );

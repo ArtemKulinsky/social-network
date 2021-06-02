@@ -9,7 +9,6 @@ import { Profile } from './components/Profile/Profile';
 
 function App(props) {
   return (
-    <BrowserRouter>
       <div className="wrapper">
         <Header></Header>
         <Aside asideReducer={props.appState.asideReducer} ></Aside>
@@ -27,7 +26,6 @@ function App(props) {
           <Route path="/settings" component={ Profile } />
         </div>
       </div>
-    </BrowserRouter>
   );
 }
 

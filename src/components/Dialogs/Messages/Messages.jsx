@@ -3,6 +3,7 @@ import Message from './Message/Message';
 import s from './Messages.module.css';
 
 const Messages = (props) => {
+   // debugger;
    let addMessage = (e) => {
       e.preventDefault();
       props.addMessage();

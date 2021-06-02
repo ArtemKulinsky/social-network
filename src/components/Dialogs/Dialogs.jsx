@@ -15,12 +15,9 @@ const Dialogs = (props) => {
                {
                   props.dialogsPage.dialogs.map((dialog)=> <Dialog id={dialog.id} name={dialog.name} />)
                }
-            </div>
-            <Route path="/dialogs/1" render={ () => <MessagesContainer  dispatch={props.dispatch}
-                                                               dialogsPage={props.dialogsPage} 
-            /> } />
-            <Route path="/dialogs/2" render={ () => <MessagesContainer  dispatch={props.dispatch}
-                                                               dialogsPage={props.dialogsPage} /> } />
+            </div>   
+            <Route path="/dialogs/1" render={ () => <MessagesContainer/> } />
+            <Route path="/dialogs/2" render={ () => <MessagesContainer/> } />
          </div>
       </div>
    )
