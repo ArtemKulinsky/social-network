@@ -1,13 +1,13 @@
 import React from 'react';
-import { NewPost } from './NewPost/NewPost';
 import s from './MyPosts.module.css';
 import Posts from './Posts/Posts';
+import NewPostContainer from './NewPost/NewPostContainer';
 
 const MyPosts = (props) => {
   return (
     <section className={s.myPosts}>
       <h2 className={s.myPosts__title}>My posts</h2>
-      <NewPost dispatch={props.dispatch} newPost={props.myPosts.newPost} />
+      <NewPostContainer dispatch={props.dispatch} newPost={props.myPosts.newPost} />
       <Posts posts={props.myPosts.posts} />
     </section>
   )

@@ -7,7 +7,7 @@ const Aside = (props) => {
   return (
       <aside className={s.aside}>
         <Pages />
-        <Friends friends={props.aside.friends} />
+        <Friends friends={props.asideReducer.friends} />
       </aside>
   )
 }

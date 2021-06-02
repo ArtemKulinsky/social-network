@@ -12,15 +12,15 @@ function App(props) {
     <BrowserRouter>
       <div className="wrapper">
         <Header></Header>
-        <Aside aside={props.appState.aside} ></Aside>
+        <Aside asideReducer={props.appState.asideReducer} ></Aside>
         <div className="content">
           <Route path="/profile" 
             render={ () => <Profile dispatch={props.dispatch} 
-                                    profilePage={props.appState.profilePage} /> } />
+                                    profilePage={props.appState.profileReducer} /> } />
           
           <Route path="/dialogs" 
             render={ () => <Dialogs dispatch={props.dispatch} 
-                                    dialogsPage={props.appState.dialogsPage} />} />
+                                    dialogsPage={props.appState.dialogsReducer} />} />
           
           <Route path="/news" component={ Profile } />
           <Route path="/music" component={ Profile } />

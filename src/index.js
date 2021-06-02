@@ -2,13 +2,13 @@ import React from 'react';
 import reactDom from 'react-dom'; 
 import App from './App';
 import './index.css';
-import store from './Redux/state';
+import store from './Redux/redux-store';
 import reportWebVitals from './reportWebVitals';
 
-export let rerenderEntireTree = () => {
+export let rerenderEntireTree = (state) => {
    reactDom.render(
       <React.StrictMode>
-      <App  appState={ store.getState() } 
+      <App  appState={ state } 
             dispatch={ store.dispatch.bind(store) }
             // addNewMessageText={ (store.addNewMessageText).bind(store) } 
             // addMessage={ store.addMessage.bind(store) } 
@@ -20,10 +20,11 @@ export let rerenderEntireTree = () => {
    );
 }
 
-rerenderEntireTree();
+rerenderEntireTree(store.getState());
 
-store.subcriber(rerenderEntireTree);
-
+store.subscribe(() => {
+   rerenderEntireTree(store.getState())
+})
 
 
 // If you want to start measuring performance in your app, pass a function
