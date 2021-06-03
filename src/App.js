@@ -1,6 +1,5 @@
 import React from 'react';
 import { Route } from 'react-router';
-import { BrowserRouter } from 'react-router-dom';
 import './App.css';
 import Aside from './components/Aside/Aside';
 import Dialogs from './components/Dialogs/Dialogs';

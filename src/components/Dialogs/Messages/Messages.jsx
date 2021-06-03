@@ -10,6 +10,7 @@ const Messages = (props) => {
    }
 
    let addNewMessageText = (e) => {
+      debugger;
       let text = e.target.value;
       props.addNewMessageText(text);
    }

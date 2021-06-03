@@ -1,12 +1,12 @@
 import React from 'react';
 import reactDom from 'react-dom'; 
+import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import './index.css';
 import store from './Redux/redux-store';
 import reportWebVitals from './reportWebVitals';
-import { Provider } from './store-context';
-// debugger;
+
 export let rerenderEntireTree = (state) => {
    reactDom.render(
       <React.StrictMode>
