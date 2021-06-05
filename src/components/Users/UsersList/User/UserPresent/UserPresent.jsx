@@ -2,12 +2,11 @@ import React from "react";
 import s from "./UserPresent.module.css";
 
 const UserPresent = (props) => {
-   debugger;
    let changeFollow = () => {
       let id = props.id;
       props.onFollowClick(id);
    }
-
+   
    return (
       <section className={s.userPresent}>
          <div className={s.userAvatar}>

@@ -1,7 +1,8 @@
 const CHANGE_FOLLOW = "CHANGE-FOLLOW";
+const SET_USERS = "SET-USERS";
 
 let initialState = {
-   users: [
+   users: [/*
       { id: 1, followed: true, userInf: {fullName: "Grigoriy Kuznezov", status: "Ебу коменду за матрас", location: {city: "Междуреченск", country: "Russia"}} },
       { id: 2, followed: true, userInf: {fullName: "Nikolay Latkin", status: "Скучно на трех работах, развлекаюсь как могу", location: {city: "Краснодырск", country: "Russia"}} },
       { id: 3, followed: false, userInf: {fullName: "Vladimir Tashinskiy", status: "Все как и на первом курсе", location: {city: "Воронежегрязинск", country: "Russia"}} },
@@ -9,15 +10,27 @@ let initialState = {
       { id: 5, followed: true, userInf: {fullName: "Elmira Abramova", status: "Резницы слиплись от холода. Переберусь- ка еще посевернее", location: {city: "Petrozavods State University", country: "Russia"}} },
       { id: 6, followed: false, userInf: {fullName: "Artem Schiva", status: "Опять приходил Артем, нажрался как сука", location: {city: "Краснодырск", country: "Russia"}} },
       { id: 7, followed: false, userInf: {fullName: "Grigoriy Kuznezov", status: "Ебу коменду за матрас", location: {city: "Междуреченск", country: "Russia"}} },
-   ]
+   */]
 }
 
 const usersReducer = (state = initialState, action) => {
    switch (action.type) {
       case CHANGE_FOLLOW:{
-         let stateCopy = {...state, users: [...state.users]};
-         stateCopy.users[action.userId - 1].followed = !stateCopy.users[action.userId - 1].followed;
-         return stateCopy;
+         // let stateCopy = {...state, users: [...state.users]};
+         // stateCopy.users[action.userId - 1].followed = !stateCopy.users[action.userId - 1].followed;
+         return {
+            ...state, 
+            users: state.users.map( user => {
+               if(user.id === action.userId) {
+                  return {...user, followed: !user.followed}
+               }
+               return user;
+            })
+         }
+      }
+
+      case SET_USERS:{
+         return {...state.users, users: [...state.users, ...action.users]}
       }
    
       default:
@@ -26,5 +39,6 @@ const usersReducer = (state = initialState, action) => {
 }
 
 export const changeFollowAC = (id) => ({ type: CHANGE_FOLLOW , userId: id});
+export const setUsersAC = (users) => ({ type: SET_USERS , users});
 
 export default usersReducer;
