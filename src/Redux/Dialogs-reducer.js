@@ -12,18 +12,18 @@ let initialState = {
       ],
 
    messages : [
-      {id: 1, message :"Пошел нахуй пидорас гнилой сдохни тварь", belong: 'user',},
-      {id: 2, message :"Возвращай три сотки, хуйло!Возвращай три сотки, хуйло!Возвращай три сотки, хуйло!Возвращай три сотки, хуйло!Возвращай три сотки, хуйло!Возвращай три сотки, хуйло!Возвращай три сотки, хуйло!Возвращай три сотки, хуйло!Возвращай три сотки, хуйло!Возвращай три сотки, хуйло!Возвращай три сотки, хуйло!", belong: 'opponent',},
-      {id: 3, message :"Я те говорю занят я", belong: 'user',},
-      {id: 4, message :"Когда сможешь?", belong: 'opponent',},
-      {id: 5, message :"Я сейчас занят", belong: 'user',},
-      {id: 6, message :"Верни 3 сотки", belong: 'opponent',},
-      {id: 7, message :"Пошел нахуй пидорас гнилой сдохни тварь", belong: 'user',},
-      {id: 8, message :"Возвращай три сотки, хуйло!Возвращай три сотки, хуйло!Возвращай три сотки, хуйло!Возвращай три сотки, хуйло!Возвращай три сотки, хуйло!Возвращай три сотки, хуйло!Возвращай три сотки, хуйло!Возвращай три сотки, хуйло!Возвращай три сотки, хуйло!Возвращай три сотки, хуйло!Возвращай три сотки, хуйло!", belong: 'opponent',},
-      {id: 9, message :"Я те говорю занят я", belong: 'user',},
-      {id: 10, message :"Когда сможешь?", belong: 'opponent',},
-      {id: 11, message :"Я сейчас занят", belong: 'user',},
-      {id: 12, message :"Верни 3 сотки", belong: 'opponent',},
+      {id: 1, message :"Верни 3 сотки", belong: 'opponent',},
+      {id: 2, message :"Я сейчас занят", belong: 'user',},
+      {id: 3, message :"Когда сможешь?", belong: 'opponent',},
+      {id: 4, message :"Я те говорю занят я", belong: 'user',},
+      {id: 5, message :"Возвращай три сотки, хуйло!Возвращай три сотки, хуйло!Возвращай три сотки, хуйло!Возвращай три сотки, хуйло!Возвращай три сотки, хуйло!Возвращай три сотки, хуйло!Возвращай три сотки, хуйло!Возвращай три сотки, хуйло!Возвращай три сотки, хуйло!Возвращай три сотки, хуйло!Возвращай три сотки, хуйло!", belong: 'opponent',},
+      {id: 6, message :"Пошел нахуй пидорас гнилой сдохни тварь", belong: 'user',},
+      {id: 7, message :"Верни 3 сотки", belong: 'opponent',},
+      {id: 8, message :"Я сейчас занят", belong: 'user',},
+      {id: 9, message :"Когда сможешь?", belong: 'opponent',},
+      {id: 10, message :"Я те говорю занят я", belong: 'user',},
+      {id: 11, message :"Возвращай три сотки, хуйло!Возвращай три сотки, хуйло!Возвращай три сотки, хуйло!Возвращай три сотки, хуйло!Возвращай три сотки, хуйло!Возвращай три сотки, хуйло!Возвращай три сотки, хуйло!Возвращай три сотки, хуйло!Возвращай три сотки, хуйло!Возвращай три сотки, хуйло!Возвращай три сотки, хуйло!", belong: 'opponent',},
+      {id: 12, message :"Пошел нахуй пидорас гнилой сдохни тварь", belong: 'user',},
    ],
 
    newMessage: {
@@ -40,17 +40,19 @@ const dialogsReducer = (state = initialState, action) => {
          belong: 'user',
          }
          
-         let stateCopy = {...state};
-         stateCopy.messages = [...state.messages];
-
-         stateCopy.messages.unshift(newMessage);
+         let stateCopy = {
+            ...state,
+            messages: [...state.messages],
+         };
+         
+         stateCopy.messages = [...state.messages, newMessage];
+         // stateCopy.messages.push(newMessage);
          stateCopy.newMessage.text = '';
          return stateCopy;
       }
 
       case UPDATE_NEW_MESSAGE_TEXT: {
          let stateCopy = {...state};
-         stateCopy.messages = [...state.messages]
          stateCopy.newMessage.text = action.newText;
          return stateCopy;
       }

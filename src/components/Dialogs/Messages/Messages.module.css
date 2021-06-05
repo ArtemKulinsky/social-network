@@ -4,7 +4,7 @@
 
 .messagesArea {
    display: flex;
-   flex-direction: column-reverse;
+   flex-direction: column;
    flex-grow: 0;
    max-height: 600px;
    width: 100%;   

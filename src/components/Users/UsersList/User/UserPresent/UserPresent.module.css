@@ -1,0 +1,23 @@
+.userPresent {
+   flex: 0 1 10%;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   margin: 0 10px 0 0;
+}
+
+.userAvatar {
+   width: 60px;
+   height: 60px;
+   background-color: #462db9;
+   border-radius: 50%;
+   margin: 0 0 10px 0;
+}
+
+.userFollowed {
+   cursor: pointer;
+   font-family: fantasy;
+   font-size: 20px;
+   background-color: #fff;
+   border-radius: 10px;
+}

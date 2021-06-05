@@ -19,7 +19,7 @@ const Messages = (props) => {
       <div className={s.messages}>
          <div className={s.messagesArea}>
             {
-            props.dialogsPage.messages.map((message) => <Message belong={message.belong} message={message.message} />)
+            props.dialogsPage.messages.map((message) => <Message belong={message.belong} key={message.id} message={message.message} />)
             }
          </div>
             <div className={s.messageAddNew}>

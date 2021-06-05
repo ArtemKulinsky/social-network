@@ -8,7 +8,7 @@ const Friends = (props) => {
       <div className={s.friendsTitle}>Friends</div>
       <div className={s.friendsList}>
         {
-          props.friends.map((friend) => <Friend name={friend.name} />)
+          props.friends.map((friend) => <Friend name={friend.name} key={friend.id} />)
         }
       </div>
     </div>

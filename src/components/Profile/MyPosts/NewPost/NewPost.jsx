@@ -2,7 +2,6 @@ import React from 'react';
 import s from './NewPost.module.css';
 
 const NewPost = (props) => {
-  debugger;
   let addPost = (e) => {
     e.preventDefault();
     props.addPost();

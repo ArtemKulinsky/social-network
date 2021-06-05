@@ -13,7 +13,7 @@ const Dialogs = (props) => {
          <div className={s.dialogsBody}>
             <div className={s.dialogsItems}>
                {
-                  props.dialogsPage.dialogs.map((dialog)=> <Dialog id={dialog.id} name={dialog.name} />)
+                  props.dialogsPage.dialogs.map((dialog)=> <Dialog id={dialog.id} key={dialog.id} name={dialog.name} />)
                }
             </div>   
             <Route path="/dialogs/1" render={ () => <MessagesContainer/> } />

@@ -3,8 +3,6 @@ import MyPosts from './MyPosts/MyPosts';
 import ProfileHeader from './ProfileHeader/ProfileHeader';
 import ProfileInformation from './ProfileInformation/ProfileInformation';
 
-
-
 const Profile = (props) => {
   return (
     <div>

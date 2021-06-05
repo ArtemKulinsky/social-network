@@ -1,0 +1,33 @@
+.userInf {
+   display: flex;
+   flex: 1 1 auto;
+   align-self: start;
+   padding: 10px 10px 5px 10px;
+   border: 2px solid #e01854;
+   border-radius: 10px;
+   font-family: cursive;
+   font-weight: 400;
+}
+
+.headInf {
+   flex: 1 0 70%;
+}
+
+.userFullName {
+   margin: 0 0 20px 0;
+}
+
+.userStatus {
+   color: rgb(87, 86, 86);
+}
+
+.userLocation {
+   flex: 0 0 30%;
+   text-align: right;
+}
+
+.userLocationCity {
+   margin: 0 0 10px 0;
+}
+
+.userLocationCountry {}

@@ -6,7 +6,7 @@ const Posts = (props) => {
   return(
     <div className={s.posts}>
       {
-        props.posts.map((post) => <Post message={post.message} likesCount={post.likesCount} />)
+        props.posts.map((post) => <Post message={post.message} likesCount={post.likesCount} key={post.id} />)
       }
     </div>
   )
