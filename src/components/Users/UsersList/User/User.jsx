@@ -4,7 +4,6 @@ import UserInf from "./UserInf/UserInf";
 import UserPresent from "./UserPresent/UserPresent";
 
 const User = (props) => {
-   debugger;
    return (
       <div className={s.user}>
          <UserPresent
@@ -12,7 +11,7 @@ const User = (props) => {
             followed={props.user.followed}
             onFollowClick={props.onFollowClick}
          />
-         <UserInf userInf={props.user.userInf} />
+         <UserInf user={props.user} />
       </div>
    );
 };

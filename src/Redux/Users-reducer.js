@@ -1,5 +1,9 @@
-const CHANGE_FOLLOW = "CHANGE-FOLLOW";
-const SET_USERS = "SET-USERS";
+const CHANGE_FOLLOW = "CHANGE_FOLLOW";
+const SET_USERS = "SET_USERS";
+const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";
+const SET_TOTAL_USERS_COUNT = "SET_TOTAL_USERS_COUNT";
+const TOGGLE_IS_FETCHING = "TOGGLE_IS_FETCHING";
+
 
 let initialState = {
    users: [/*
@@ -10,7 +14,11 @@ let initialState = {
       { id: 5, followed: true, userInf: {fullName: "Elmira Abramova", status: "Резницы слиплись от холода. Переберусь- ка еще посевернее", location: {city: "Petrozavods State University", country: "Russia"}} },
       { id: 6, followed: false, userInf: {fullName: "Artem Schiva", status: "Опять приходил Артем, нажрался как сука", location: {city: "Краснодырск", country: "Russia"}} },
       { id: 7, followed: false, userInf: {fullName: "Grigoriy Kuznezov", status: "Ебу коменду за матрас", location: {city: "Междуреченск", country: "Russia"}} },
-   */]
+   */],
+   pageSize: 5,
+   totalUsersCount: 0,
+   currentPage: 1,
+   isFetching: false,
 }
 
 const usersReducer = (state = initialState, action) => {
@@ -30,7 +38,31 @@ const usersReducer = (state = initialState, action) => {
       }
 
       case SET_USERS:{
-         return {...state.users, users: [...state.users, ...action.users]}
+         return {
+            ...state,
+            users: [...action.users]
+         }
+      }
+
+      case SET_CURRENT_PAGE:{
+         return {
+            ...state,
+            currentPage: action.currentPage,
+         }
+      }
+
+      case SET_TOTAL_USERS_COUNT:{
+         return {
+            ...state,
+            totalUsersCount: action.totalUsersCount,
+         }
+      }
+
+      case TOGGLE_IS_FETCHING:{
+         return {
+            ...state,
+            isFetching: !state.isFetching,
+         }
       }
    
       default:
@@ -38,7 +70,11 @@ const usersReducer = (state = initialState, action) => {
    }
 }
 
-export const changeFollowAC = (id) => ({ type: CHANGE_FOLLOW , userId: id});
-export const setUsersAC = (users) => ({ type: SET_USERS , users});
+export const changeFollowAC = (id) => ({ type: CHANGE_FOLLOW , userId: id });
+export const setUsersAC = (users) => ({ type: SET_USERS , users });
+export const setCurrentPageAC = (currentPage) => ({ type: SET_CURRENT_PAGE, currentPage })
+export const setTotalUsersCountAC = (totalUsersCount) => ({ type: SET_TOTAL_USERS_COUNT, totalUsersCount })
+export const toggleIsFetchingAC = () => ({ type: TOGGLE_IS_FETCHING, })
+
 
 export default usersReducer;
