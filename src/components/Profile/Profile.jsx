@@ -7,10 +7,14 @@ const Profile = (props) => {
   return (
     <div>
       <ProfileHeader />
-      <ProfileInformation />
-      <MyPosts dispatch={props.dispatch} myPosts={props.profilePage.myPosts} />
+      <ProfileInformation profileInformation={props.profileInformation} />
+      <MyPosts
+        addPost={props.addPost}
+        updateNewPost={props.updateNewPost}
+        myPosts={props.myPosts}
+      />
     </div>
-  )
+  );
 }
 
 export {

@@ -5,6 +5,7 @@ import Aside from './components/Aside/Aside';
 import Dialogs from './components/Dialogs/Dialogs';
 import Header from './components/Header/Header';
 import { Profile } from './components/Profile/Profile';
+import ProfileContainer from './components/Profile/ProfileContainer';
 import Users from './components/Users/Users';
 
 function App(props) {
@@ -14,8 +15,7 @@ function App(props) {
         <Aside asideReducer={props.appState.asideReducer} ></Aside>
         <div className="content">
           <Route path="/profile" 
-            render={ () => <Profile dispatch={props.dispatch} 
-                                    profilePage={props.appState.profileReducer} /> } />
+            render={ () => <ProfileContainer/> } />
           
           <Route path="/dialogs" 
             render={ () => <Dialogs dispatch={props.dispatch} 

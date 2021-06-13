@@ -1,10 +1,10 @@
 import { connect } from "react-redux";
 import { changeFollow, setCurrentPage, setTotalUsersCount, setUsers, toggleIsFetching } from "../../../Redux/Users-reducer";
-// import UserAPIComponent from "./UsersListC";
 import axios from "axios";
 import React from "react";
 import UsersList from "./UsersList";
 import Preloader from "../../common/preloader/Preloader";
+import { transitionToProfile } from "../../../Redux/Profile-reducer";
 
 class UsersContainer extends React.Component {
    componentDidMount() {
@@ -35,9 +35,10 @@ class UsersContainer extends React.Component {
 
    render() {
       return (
-      <>
-         {this.props.isFetching ? <Preloader/> : null}
-         <UsersList
+        <>
+          {this.props.isFetching ? <Preloader /> : null}
+          <UsersList
+            transitionToProfile={this.props.transitionToProfile}
             totalUsersCount={this.props.totalUsersCount}
             pageSize={this.props.pageSize}
             currentPage={this.props.currentPage}
@@ -45,8 +46,8 @@ class UsersContainer extends React.Component {
             users={this.props.users}
             changeFollow={this.props.changeFollow}
             isFetching={this.props.isFetching}
-         />
-      </>
+          />
+        </>
       );
    }
 }
@@ -87,6 +88,7 @@ export default connect(mapStateToProps, {
    setCurrentPage,
    setTotalUsersCount,
    toggleIsFetching,
+   transitionToProfile,
 })(UsersContainer);
 
 

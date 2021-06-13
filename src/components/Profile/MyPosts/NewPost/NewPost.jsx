@@ -9,7 +9,7 @@ const NewPost = (props) => {
 
   let addNewPostText = (e) => {
     let text = e.target.value;
-    props.addNewPostText(text);
+    props.updateNewPost(text);
   }
 
   return (
@@ -24,6 +24,4 @@ const NewPost = (props) => {
   )
 }
 
-export {
-  NewPost,
-}
+export default NewPost;

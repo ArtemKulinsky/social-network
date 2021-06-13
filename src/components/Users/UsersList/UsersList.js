@@ -14,12 +14,18 @@ let UsersList = (props) => {
          <div className={s.usersList}>
             <div>
                {pages.map((p) => {
-                  return <span className={p === props.currentPage ? s.selectedPage : ""}
-                  onClick={() => {props.onPageChanged(p)}}>{p}</span>;
+                  return <span 
+                     className={p === props.currentPage ? s.selectedPage : ""}
+                     onClick={() => {props.onPageChanged(p)}}
+                     key={p}
+                  >
+                     {p}
+                  </span>;
                })}
             </div>
             {props.users.map((user) => (
                <User
+                  transitionToProfile={props.transitionToProfile}
                   onFollowClick={props.changeFollow}
                   user={user}
                   key={user.id}

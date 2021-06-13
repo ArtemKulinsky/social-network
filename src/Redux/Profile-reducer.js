@@ -1,7 +1,27 @@
 const ADD_POST = "ADD-POST";
 const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
+const SET_PROFILE_INFORMATION = "SET_PROFILE_INFORMATION";
+const TRANSITION_TO_PROFILE = "TRANSITION_TO_PROFILE";
 
 let initialState = {
+   profileInformation: {
+      photo: null,
+      status: null,
+      lookingForAJob: null,
+      lookingForAJobDescription: null,
+      fullName: null,
+      contacts: {
+         github: null,
+         vk: null,
+         facebook: null,
+         instagram: null,
+         twitter: null,
+         website: null,
+         youtube: null,
+         mainLink: null,
+      },
+      id: null,
+   },
    myPosts : {
       newPost : {
          text : '',
@@ -25,27 +45,64 @@ const profileReducer = (state = initialState, action) => {
          message: state.myPosts.newPost.text,
          likesCount: 0,
          }
-         
-         let stateCopy = { ...state};
-         stateCopy.myPosts.posts = [
-            newPost,
-            ...state.myPosts.posts];
 
-         stateCopy.myPosts.newPost.text = '';
-         return stateCopy;
+         return {
+            ...state,
+            myPosts: {
+               ...state.myPosts,
+               newPost: {
+                  ...state.myPosts.newPost,
+                  text: '',
+               },
+               posts: [
+                  newPost,
+                  ...state.myPosts.posts,
+               ]
+            }
+         }
       }
       
       case UPDATE_NEW_POST_TEXT:{
-         // let stateCopy = {...state};
-         // stateCopy.myPosts.newPost = {
-         //    ...state.myPosts.newPost,
-         //    text: action.newText} 
-         
          return {
             ...state,
             myPosts: {...state.myPosts, newPost: {...state.myPosts.newPost, text: action.newText}}
          }
-         // return stateCopy;
+      }
+      
+      case SET_PROFILE_INFORMATION:{
+         debugger
+         return {
+            ...state,
+            profileInformation: {
+               photo: action.profileInformation.photos.large,
+               status: action.profileInformation.status,
+               lookingForAJob: action.profileInformation.lookingForAJob,
+               lookingForAJobDescription: action.profileInformation.lookingForAJobDescription,
+               fullName: action.profileInformation.fullName,
+               contacts: {
+                  github: action.profileInformation.contacts.github,
+                  vk: action.profileInformation.contacts.vk,
+                  facebook: action.profileInformation.contacts.facebook,
+                  instagram: action.profileInformation.contacts.instagram,
+                  twitter: action.profileInformation.contacts.twitter,
+                  website: action.profileInformation.contacts.website,
+                  youtube: action.profileInformation.contacts.youtube,
+                  mainLink: action.profileInformation.contacts.mainLink,
+               },
+               id: action.profileInformation.userId,
+            }
+         }
+      }
+
+      case TRANSITION_TO_PROFILE:{
+         debugger
+         return {
+            ...state,
+            profileInformation: {
+               ...state.profileInformation,
+               id: action.userId,
+            }
+         }
       }
    
       default:
@@ -53,9 +110,9 @@ const profileReducer = (state = initialState, action) => {
    }
 }
 
-export const addPostActionCreator = () => ({ type: ADD_POST });
-
-export const updateNewPostTextActionCreator = (text) => 
-   ({ type: UPDATE_NEW_POST_TEXT, newText: text })
-
+export const addPost = () => ({ type: ADD_POST });
+export const updateNewPost = (text) => 
+   ({ type: UPDATE_NEW_POST_TEXT, newText: text });
+export const setProfileInformation = (profileInformation) => ({type: SET_PROFILE_INFORMATION, profileInformation});
+export const transitionToProfile = (userId) => ({type:TRANSITION_TO_PROFILE, userId});
 export default profileReducer;
