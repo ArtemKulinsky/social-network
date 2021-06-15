@@ -4,33 +4,30 @@ import axios from "axios";
 import React from "react";
 import UsersList from "./UsersList";
 import Preloader from "../../common/preloader/Preloader";
-import { transitionToProfile } from "../../../Redux/Profile-reducer";
+import { UsersAPI } from "../../../api/api";
 
 class UsersContainer extends React.Component {
    componentDidMount() {
       this.props.toggleIsFetching();
-      axios
-         .get(
-            `https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`
-         )
-         .then((response) => {
+debugger
+      UsersAPI.getUsers(this.props.currentPage, this.props.pageSize)
+         .then((data) => {
+            debugger
             this.props.toggleIsFetching();
-            this.props.setUsers(response.data.items);
-            this.props.setTotalUsersCount(response.data.totalCount);
+            this.props.setUsers(data.items);
+            this.props.setTotalUsersCount(data.totalCount);
          });
    }
 
    onPageChanged = (pageNumber) => {
       this.props.toggleIsFetching();
       this.props.setCurrentPage(pageNumber);
-      axios
-      .get(
-         `https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`
-      )
-      .then((response) => {
-         this.props.toggleIsFetching();
-         this.props.setUsers(response.data.items);
-      });
+      UsersAPI.getUsers(pageNumber, this.props.pageSize)
+         .then((data) => {
+            debugger;
+            this.props.toggleIsFetching();
+            this.props.setUsers(data.items);
+         });
    };
 
    render() {
@@ -38,7 +35,6 @@ class UsersContainer extends React.Component {
         <>
           {this.props.isFetching ? <Preloader /> : null}
           <UsersList
-            transitionToProfile={this.props.transitionToProfile}
             totalUsersCount={this.props.totalUsersCount}
             pageSize={this.props.pageSize}
             currentPage={this.props.currentPage}
@@ -51,7 +47,7 @@ class UsersContainer extends React.Component {
       );
    }
 }
-
+window.axios = axios;
 let mapStateToProps = (state) => {
    return {
       users: state.usersPage.users,
@@ -62,33 +58,12 @@ let mapStateToProps = (state) => {
    };
 }
 
-// let mapDispatchToProps = (dispatch) => {
-//    return {
-//       changeFollow: (id) => {
-//          dispatch(changeFollowAC(id));
-//       },
-//       setUsers: (users) => {
-//          dispatch(setUsersAC(users));
-//       },
-//       setCurrentPage: (currentPage) => {
-//          dispatch(setCurrentPageAC(currentPage));
-//       },
-//       setTotalUsersCount: (totalUsersCount) => {
-//          dispatch(setTotalUsersCountAC(totalUsersCount));
-//       },
-//       toggleIsFetching: () => {
-//          dispatch(toggleIsFetchingAC());
-//       }
-//    };
-// }
-
 export default connect(mapStateToProps, {
    changeFollow,
    setUsers,
    setCurrentPage,
    setTotalUsersCount,
    toggleIsFetching,
-   transitionToProfile,
 })(UsersContainer);
 
 

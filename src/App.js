@@ -4,6 +4,7 @@ import './App.css';
 import Aside from './components/Aside/Aside';
 import Dialogs from './components/Dialogs/Dialogs';
 import Header from './components/Header/Header';
+import HeaderContainer from './components/Header/HeaderContainer';
 import { Profile } from './components/Profile/Profile';
 import ProfileContainer from './components/Profile/ProfileContainer';
 import Users from './components/Users/Users';
@@ -11,10 +12,10 @@ import Users from './components/Users/Users';
 function App(props) {
   return (
       <div className="wrapper">
-        <Header></Header>
+        <HeaderContainer></HeaderContainer>
         <Aside asideReducer={props.appState.asideReducer} ></Aside>
         <div className="content">
-          <Route path="/profile" 
+          <Route path="/profile/:userId?" 
             render={ () => <ProfileContainer/> } />
           
           <Route path="/dialogs" 

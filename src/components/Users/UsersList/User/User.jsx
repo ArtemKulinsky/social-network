@@ -7,7 +7,6 @@ const User = (props) => {
    return (
      <div className={s.user}>
        <UserPresent
-         transitionToProfile={props.transitionToProfile}
          id={props.user.id}
          followed={props.user.followed}
          onFollowClick={props.onFollowClick}

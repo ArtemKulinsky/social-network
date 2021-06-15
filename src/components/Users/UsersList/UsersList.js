@@ -25,7 +25,6 @@ let UsersList = (props) => {
             </div>
             {props.users.map((user) => (
                <User
-                  transitionToProfile={props.transitionToProfile}
                   onFollowClick={props.changeFollow}
                   user={user}
                   key={user.id}

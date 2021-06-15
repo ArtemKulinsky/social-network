@@ -9,4 +9,17 @@
   position: absolute;
   top: -230%;
   min-width: 100%;
+  z-index: 1;
+}
+
+.loginContainer {
+  float: right;
+  z-index: 10;
+}
+
+.loginContainer a {
+  z-index: 10;
+}
+.login {
+  z-index: 10;
 }

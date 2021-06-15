@@ -39,7 +39,6 @@ let initialState = {
 const profileReducer = (state = initialState, action) => {
    switch (action.type) {
       case ADD_POST:{
-         debugger;
          let newPost = {
          id: state.myPosts.posts.length + 1,
          message: state.myPosts.newPost.text,
@@ -70,7 +69,6 @@ const profileReducer = (state = initialState, action) => {
       }
       
       case SET_PROFILE_INFORMATION:{
-         debugger
          return {
             ...state,
             profileInformation: {
@@ -93,17 +91,6 @@ const profileReducer = (state = initialState, action) => {
             }
          }
       }
-
-      case TRANSITION_TO_PROFILE:{
-         debugger
-         return {
-            ...state,
-            profileInformation: {
-               ...state.profileInformation,
-               id: action.userId,
-            }
-         }
-      }
    
       default:
          return state;
@@ -114,5 +101,4 @@ export const addPost = () => ({ type: ADD_POST });
 export const updateNewPost = (text) => 
    ({ type: UPDATE_NEW_POST_TEXT, newText: text });
 export const setProfileInformation = (profileInformation) => ({type: SET_PROFILE_INFORMATION, profileInformation});
-export const transitionToProfile = (userId) => ({type:TRANSITION_TO_PROFILE, userId});
 export default profileReducer;

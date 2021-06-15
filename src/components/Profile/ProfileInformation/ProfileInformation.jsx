@@ -2,7 +2,6 @@ import React from 'react';
 import s from './ProfileInformation.module.css';
 
 const ProfileInformation = (props) => {
-  debugger
   return (
     <section className={s.profileInformation}>
       <div className={s.profileInformation__photo}>
