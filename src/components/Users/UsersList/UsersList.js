@@ -25,7 +25,9 @@ let UsersList = (props) => {
             </div>
             {props.users.map((user) => (
                <User
-                  onFollowClick={props.changeFollow}
+                  isFollowingInProgress={props.isFollowingInProgress}
+                  toggleFollowingInProgress={props.toggleFollowingInProgress}
+                  changeFollow={props.changeFollow}
                   user={user}
                   key={user.id}
                />
