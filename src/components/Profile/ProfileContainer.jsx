@@ -1,18 +1,19 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Profile } from './Profile';
-import { addPost, setProfileInformation, updateNewPost } from '../../Redux/Profile-reducer';
+import {
+  addPost,
+  getProfile,
+  updateNewPost,
+} from "../../Redux/Profile-reducer";
 import { withRouter } from 'react-router-dom';
-import { ProfileAPI } from '../../api/api';
+import { withAuthRedirect } from '../../hoc/AuthRedirect';
 
 
 class ProfileContainer extends React.Component {
   componentDidMount() {
-    let userId = this.props.match.params.userId;
-    ProfileAPI.setProfile(userId)
-      .then((data) => {
-          this.props.setProfileInformation(data);
-        });
+    let userId = this.props.match.params.userId; ////!Из данных, передаваемых с WithRouter
+    this.props.getProfile(userId);
   }
   
   render() {
@@ -24,6 +25,8 @@ class ProfileContainer extends React.Component {
   }
 }
 
+let withAuthRedirectComponent = withAuthRedirect(ProfileContainer);
+
 let mapStateToProps = (state) => {
   return {
     profileInformation: state.profileReducer.profileInformation,
@@ -31,10 +34,10 @@ let mapStateToProps = (state) => {
   };
 };
 
-let WithUrlDataContainerComponent = withRouter(ProfileContainer)
+let withUrlDataContainerComponent = withRouter(withAuthRedirectComponent);
 
 export default connect(mapStateToProps, {
-  setProfileInformation,
+  getProfile,
   addPost,
   updateNewPost,
-})(WithUrlDataContainerComponent);
+})(withUrlDataContainerComponent);

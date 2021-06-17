@@ -3,6 +3,7 @@ import { Route } from 'react-router';
 import './App.css';
 import Aside from './components/Aside/Aside';
 import Dialogs from './components/Dialogs/Dialogs';
+import DialogsContainer from './components/Dialogs/DialogsContainer';
 import Header from './components/Header/Header';
 import HeaderContainer from './components/Header/HeaderContainer';
 import { Profile } from './components/Profile/Profile';
@@ -19,8 +20,7 @@ function App(props) {
             render={ () => <ProfileContainer/> } />
           
           <Route path="/dialogs" 
-            render={ () => <Dialogs dispatch={props.dispatch} 
-                                    dialogsPage={props.appState.dialogsReducer} />} />
+            render={ () => <DialogsContainer />} />
           
           <Route path="/news" component={ Profile } />
           <Route path="/music" component={ Profile } />

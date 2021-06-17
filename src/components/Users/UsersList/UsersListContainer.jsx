@@ -3,21 +3,14 @@ import {
    changeFollow,
    getUsers,
 } from "../../../Redux/Users-reducer";
-import axios from "axios";
 import React from "react";
 import UsersList from "./UsersList";
 import Preloader from "../../common/preloader/Preloader";
+import { withAuthRedirect } from "../../../hoc/AuthRedirect";
 
-class UsersContainer extends React.Component {
+class UsersListContainer extends React.Component {
    componentDidMount() {
       this.props.getUsers(this.props.currentPage, this.props.pageSize)
-      // this.props.toggleIsFetching();
-      // UsersAPI.getUsers(this.props.currentPage, this.props.pageSize)
-      //    .then((data) => {
-      //       this.props.toggleIsFetching();
-      //       this.props.setUsers(data.items);
-      //       this.props.setTotalUsersCount(data.totalCount);
-      //    });
    }
 
    onPageChanged = (pageNumber) => {
@@ -42,6 +35,8 @@ class UsersContainer extends React.Component {
    }
 }
 
+let withAuthRedirectComponent = withAuthRedirect(UsersListContainer)
+
 let mapStateToProps = (state) => {
    return {
       users: state.usersPage.users,
@@ -54,8 +49,8 @@ let mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps, {
-   changeFollow,
-   getUsers,
-})(UsersContainer);
+  changeFollow,
+  getUsers,
+})(withAuthRedirectComponent);
 
 

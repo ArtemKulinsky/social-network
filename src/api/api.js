@@ -28,15 +28,15 @@ export const UsersAPI = {
    },
 };
 
-export const HeaderAPI = {
-   isAuth() {
+export const AuthAPI = {
+   me() {
       return instance.get('auth/me')
          .then(response => response.data.data)
    },
 }
 
 export const ProfileAPI = {
-   setProfile(id) {
+   getProfile(id) {
       return instance.get(`profile/${id}`)
          .then(response => response.data)
    },
