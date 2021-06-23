@@ -54,7 +54,7 @@ export const LoginUser = (email, password, remembeMe) => {
       AuthAPI.login(email, password, remembeMe)
          .then(response => {
             if(response.data.resultCode === 0) {
-               AuthMe();
+               dispatch(AuthMe());
             }
          })
    }

@@ -12,7 +12,7 @@ import s from "./LoginForm.module.css";
 //    );
 // }
 
-// const TextArea = Element("input")
+const Input = Element("input")
 
 const LoginForm = (props) => {
    return (
@@ -23,7 +23,7 @@ const LoginForm = (props) => {
                validate={[required]}
                placeholder="email"
                name={"email"}
-               component={Element("input")}
+               component={Input}
             />
             </div>
             <div className={s.password + " " + s.inputField}>
@@ -31,7 +31,8 @@ const LoginForm = (props) => {
                validate={[required]}
                placeholder="password"
                name={"password"}
-               component={Element("input")}
+               type="password"
+               component={Input}
             />
             </div>
             <label className={s.remember}>

@@ -22,9 +22,9 @@ const mapStateToProps = (state) => ({
 });
 
 export default compose(
-  connect(mapStateToProps, {
-    AuthMe,
-    LoginUser,
-    LogoutUser,
-  })
+      connect(mapStateToProps, {
+      AuthMe,
+      LoginUser,
+      LogoutUser,
+      })
 )(HeaderContainer);

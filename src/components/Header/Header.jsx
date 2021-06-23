@@ -13,7 +13,7 @@ const Header = (props) => {
               </div>
           </div>
           <div className={s.logout}>
-            <button onClick={props.LogoutUser}>Logout</button>
+            {props.isAuth && <button onClick={props.LogoutUser}>Logout</button>}
           </div>
         </header>
       );
