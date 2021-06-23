@@ -1,17 +1,11 @@
 import React from 'react';
+import { Field, reduxForm } from 'redux-form';
 import Message from './Message/Message';
 import s from './Messages.module.css';
 
 const Messages = (props) => {
-   // debugger;
-   let addMessage = (e) => {
-      e.preventDefault();
-      props.addMessage();
-   }
-
-   let addNewMessageText = (e) => {
-      let text = e.target.value;
-      props.updateNewMessageText(text);
+   let addMessage = (formData) => {
+      props.addMessage(formData.newMessage);
    }
 
    return (
@@ -21,16 +15,28 @@ const Messages = (props) => {
             props.messages.map((message) => <Message belong={message.belong} key={message.id} message={message.message} />)
             }
          </div>
-            <div className={s.messageAddNew}>
-               <form className={s.addForm}>
-                  <textarea onChange={ addNewMessageText }
-                           className={s.textarea}
-                           value={props.newMessage.text}></textarea>
-               <button onClick={ addMessage } className={s.addButton}>Send</button>
-               </form>
-            </div>
+         <NewMessageReduxForm onSubmit={addMessage}  addMessage={addMessage} />
       </div>
    )
 }
+
+const NewMessageForm = (props) => {
+   return (
+      <div className={s.messageAddNew}>
+         <form onSubmit={props.handleSubmit} className={s.addForm}>
+            <Field 
+               name="newMessage"
+               className={s.textarea}
+               component="textarea"
+            ></Field>
+            <button className={s.addButton}>Send</button>
+         </form>
+      </div>
+   );
+}
+
+const NewMessageReduxForm = reduxForm({
+   form: "newMessage"
+})(NewMessageForm);
 
 export default Messages;

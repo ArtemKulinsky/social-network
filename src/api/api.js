@@ -33,11 +33,31 @@ export const AuthAPI = {
       return instance.get('auth/me')
          .then(response => response.data.data)
    },
+
+   login(email, password, rememberMe) {
+      return instance.post('auth/login', {
+         email: email,
+         password: password,
+         rememberMe: rememberMe
+      })
+   },
+
+   logout() {
+      return instance.delete('auth/login');
+   }
 }
 
 export const ProfileAPI = {
-   getProfile(id) {
+   getProfileInformation(id) {
       return instance.get(`profile/${id}`)
          .then(response => response.data)
+   },
+
+   getProfileStatus(id) {
+      return instance.get(`/profile/status/${id}`)
+   },
+
+   updateProfileStatus(status){
+      return instance.put('profile/status', { status: status },)
    },
 }

@@ -1,0 +1,28 @@
+.form {
+   display: flex;
+   flex-direction: column;
+}
+
+.formContainer{
+   display: flex;
+   justify-content: center;
+}
+
+.inputField {
+   margin: 0 0 20px 0;
+   align-self: center;
+   flex: 0 0 auto;
+}
+
+.login {}
+
+.password {}
+
+.remember {
+   margin: 0 0 10px 0;
+   align-self: flex-start;
+}
+
+.submit {
+   align-self: flex-end;
+}

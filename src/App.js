@@ -2,10 +2,9 @@ import React from 'react';
 import { Route } from 'react-router';
 import './App.css';
 import Aside from './components/Aside/Aside';
-import Dialogs from './components/Dialogs/Dialogs';
 import DialogsContainer from './components/Dialogs/DialogsContainer';
-import Header from './components/Header/Header';
 import HeaderContainer from './components/Header/HeaderContainer';
+import Login from './components/Login/Login';
 import { Profile } from './components/Profile/Profile';
 import ProfileContainer from './components/Profile/ProfileContainer';
 import Users from './components/Users/Users';
@@ -15,9 +14,9 @@ function App(props) {
       <div className="wrapper">
         <HeaderContainer></HeaderContainer>
         <Aside asideReducer={props.appState.asideReducer} ></Aside>
-        <div className="content">
+        <main className="content">
           <Route path="/profile/:userId?" 
-            render={ () => <ProfileContainer/> } />
+          render={ () => <ProfileContainer/> } />
           
           <Route path="/dialogs" 
             render={ () => <DialogsContainer />} />
@@ -27,7 +26,9 @@ function App(props) {
           <Route path="/settings" component={ Profile } />
           <Route path="/users" 
             render={ () => <Users/> } />
-        </div>
+          <Route path="/login" 
+            render={ () => <Login/>} />
+        </main>
       </div>
   );
 }

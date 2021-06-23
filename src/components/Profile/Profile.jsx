@@ -1,7 +1,6 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
 import MyPosts from './MyPosts/MyPosts';
-import ProfileHeader from './ProfileHeader/ProfileHeader';
 import ProfileInformation from './ProfileInformation/ProfileInformation';
 
 const Profile = (props) => {
@@ -10,8 +9,12 @@ const Profile = (props) => {
 
     return (
       <div>
-        <ProfileHeader />
-        <ProfileInformation profileInformation={props.profileInformation} />
+        {/* <ProfileHeader /> */}
+        <ProfileInformation
+          myId={props.myId}
+          profileInformation={props.profileInformation}
+          updateProfileStatus={props.updateProfileStatus}
+        />
         <MyPosts
           addPost={props.addPost}
           updateNewPost={props.updateNewPost}

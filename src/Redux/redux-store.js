@@ -5,6 +5,8 @@ import dialogsReducer from "./Dialogs-reducer";
 import profileReducer from "./Profile-reducer"; 
 import usersReducer from "./Users-reducer";
 import thunkMiddleWare from "redux-thunk";
+import axios from "axios";
+import { reducer as formReducer } from 'redux-form'
 
 let reducers = combineReducers({
    auth: authReducer,
@@ -12,10 +14,12 @@ let reducers = combineReducers({
    dialogsReducer: dialogsReducer,
    asideReducer: asideReducer,
    usersPage: usersReducer,
+   form: formReducer,
 });
 
 let store = createStore(reducers, applyMiddleware(thunkMiddleWare));
 
 window.store = store; //!Чтобы можно было обратиться к store через консоль
+window.axios = axios;
 
 export default store;

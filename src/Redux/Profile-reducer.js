@@ -3,12 +3,13 @@ import { ProfileAPI } from "../api/api";
 const ADD_POST = "ADD-POST";
 const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
 const SET_PROFILE_INFORMATION = "SET_PROFILE_INFORMATION";
-const TRANSITION_TO_PROFILE = "TRANSITION_TO_PROFILE";
+const SET_PROFILE_STATUS = "SET_PROFILE_STATUS";
+
 
 let initialState = {
    profileInformation: {
       photo: null,
-      status: null,
+      status: "",
       lookingForAJob: null,
       lookingForAJobDescription: null,
       fullName: null,
@@ -24,11 +25,8 @@ let initialState = {
       },
       id: null,
    },
-   myPosts : {
-      newPost : {
-         text : '',
-      },
 
+   myPosts : {
       posts : [
          {id: 1, message: 'Hi! How are you?', likesCount: 1},
          {id: 2, message: 'Hi! How are you?', likesCount: 4},
@@ -43,7 +41,7 @@ const profileReducer = (state = initialState, action) => {
       case ADD_POST:{
          let newPost = {
          id: state.myPosts.posts.length + 1,
-         message: state.myPosts.newPost.text,
+         message: action.newPostText,
          likesCount: 0,
          }
 
@@ -51,10 +49,6 @@ const profileReducer = (state = initialState, action) => {
             ...state,
             myPosts: {
                ...state.myPosts,
-               newPost: {
-                  ...state.myPosts.newPost,
-                  text: '',
-               },
                posts: [
                   newPost,
                   ...state.myPosts.posts,
@@ -63,19 +57,12 @@ const profileReducer = (state = initialState, action) => {
          }
       }
       
-      case UPDATE_NEW_POST_TEXT:{
-         return {
-            ...state,
-            myPosts: {...state.myPosts, newPost: {...state.myPosts.newPost, text: action.newText}}
-         }
-      }
-      
       case SET_PROFILE_INFORMATION:{
          return {
             ...state,
             profileInformation: {
+               ...state.profileInformation,
                photo: action.profileInformation.photos.large,
-               status: action.profileInformation.status,
                lookingForAJob: action.profileInformation.lookingForAJob,
                lookingForAJobDescription: action.profileInformation.lookingForAJobDescription,
                fullName: action.profileInformation.fullName,
@@ -93,25 +80,49 @@ const profileReducer = (state = initialState, action) => {
             }
          }
       }
+
+      case SET_PROFILE_STATUS:{
+         return {
+            ...state,
+            profileInformation: {
+               ...state.profileInformation,
+               status: action.status
+            }
+         }
+      }
    
       default:
          return state;
    }
 }
 
-export const addPost = () => ({ type: ADD_POST });
-export const updateNewPost = (text) => 
-   ({ type: UPDATE_NEW_POST_TEXT, newText: text });
+export const addPost = (newPostText) => ({ type: ADD_POST, newPostText});
+export const setProfileStatus = (status) => ({ type: SET_PROFILE_STATUS, status });
 export const setProfileInformation = (profileInformation) => ({type: SET_PROFILE_INFORMATION, profileInformation});
 export default profileReducer;
 
-export const getProfile = (userId) => {
+export const setProfile = (userId) => {
    
    return (dispatch) => {
+      ProfileAPI.getProfileInformation(userId)
+         .then((data) => {
+            dispatch(setProfileInformation(data));
+         });
 
-      ProfileAPI.getProfile(userId)
-      .then((data) => {
-         dispatch(setProfileInformation(data));
-      });
+      ProfileAPI.getProfileStatus(userId)
+         .then((response => {
+            dispatch(setProfileStatus(response.data))
+         }));
+   }
+}
+
+export const updateProfileStatus = (status, userId) => {
+   return (dispatch) => {
+      ProfileAPI.updateProfileStatus(status)
+         .then((response) => {
+            if(response.data.resultCode === 0 ){
+               dispatch(setProfileStatus(status))
+            }
+         })
    }
 }

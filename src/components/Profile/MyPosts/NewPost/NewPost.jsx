@@ -1,27 +1,31 @@
 import React from 'react';
+import { Field, reduxForm } from 'redux-form';
+import { maxLengthCreator, required } from '../../../../utils/vallidators/validators';
+import { Element } from '../../../common/preloader/FormsControls/FormsControls';
 import s from './NewPost.module.css';
 
-const NewPost = (props) => {
-  let addPost = (e) => {
-    e.preventDefault();
-    props.addPost();
-  }
+const maxLength50 = maxLengthCreator(50);
 
-  let addNewPostText = (e) => {
-    let text = e.target.value;
-    props.updateNewPost(text);
-  }
+const TextArea = Element("textarea")
+
+const NewPostForm = (props) => {
+  // autofill("newPost", props.status);
 
   return (
     <div className={s.newPost}>
-      <form className={s.newPostAddNews}>
-        <textarea onChange={ addNewPostText }
-                  value={props.newPost.text} 
-                  placeholder="your news..."></textarea>
-        <button onClick={ addPost } >Send</button>
+      <form onSubmit={props.handleSubmit} className={s.newPostAddNews}>
+        <Field
+          name="newPost"
+          placeholder="your news..."
+          validate={[required, maxLength50]}
+          component={TextArea}
+        ></Field>
+        <button>Send</button>
       </form>
     </div>
-  )
+  );
 }
 
-export default NewPost;
+export const NewPostReduxForm = reduxForm({
+  form: "newPost",
+})(NewPostForm);

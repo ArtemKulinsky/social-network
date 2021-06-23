@@ -1,0 +1,22 @@
+.textAreaContainer {
+   position: relative;
+}
+
+.textArea {
+   width: 60%;
+   display: block;
+}
+
+.textArea:focus {
+   outline: none;
+}
+
+.textArea.error {
+   border: 1px solid red;
+}
+
+.errorDescription {
+   color: red;
+   position: absolute;
+   top: 105%;
+}

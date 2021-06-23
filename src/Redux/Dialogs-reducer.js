@@ -25,10 +25,6 @@ let initialState = {
       {id: 11, message :"Возвращай три сотки, хуйло!Возвращай три сотки, хуйло!Возвращай три сотки, хуйло!Возвращай три сотки, хуйло!Возвращай три сотки, хуйло!Возвращай три сотки, хуйло!Возвращай три сотки, хуйло!Возвращай три сотки, хуйло!Возвращай три сотки, хуйло!Возвращай три сотки, хуйло!Возвращай три сотки, хуйло!", belong: 'opponent',},
       {id: 12, message :"Пошел нахуй пидорас гнилой сдохни тварь", belong: 'user',},
    ],
-
-   newMessage: {
-      text: '',
-   }
 }
 
 const dialogsReducer = (state = initialState, action) => {
@@ -36,24 +32,15 @@ const dialogsReducer = (state = initialState, action) => {
       case ADD_MESSAGE: {
          let newMessage = {
          id: state.messages.length + 1,
-         message: state.newMessage.text,
+         message: action.newMessageBody,
          belong: 'user',
          }
          
          let stateCopy = {
             ...state,
-            messages: [...state.messages],
+            messages: [...state.messages, newMessage],
          };
          
-         stateCopy.messages = [...state.messages, newMessage];
-         // stateCopy.messages.push(newMessage);
-         stateCopy.newMessage.text = '';
-         return stateCopy;
-      }
-
-      case UPDATE_NEW_MESSAGE_TEXT: {
-         let stateCopy = {...state};
-         stateCopy.newMessage.text = action.newText;
          return stateCopy;
       }
    
@@ -62,9 +49,6 @@ const dialogsReducer = (state = initialState, action) => {
    }
 }
 
-export const addMessage = () => ({ type: ADD_MESSAGE })
-
-export const updateNewMessageText = (text) => 
-   ({ type: UPDATE_NEW_MESSAGE_TEXT, newText: text })
+export const addMessage = (newMessageBody) => ({ type: ADD_MESSAGE, newMessageBody })
 
 export default dialogsReducer;
