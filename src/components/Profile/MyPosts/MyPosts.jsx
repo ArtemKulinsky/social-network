@@ -6,15 +6,8 @@ import { useState } from 'react';
 
 const MyPosts = (props) => {
   
-  const [submitted, changeSubmitted] = useState(false);
-
-  // useEffect(() => {
-  //   changeSubmitted(submitted = false);
-  // });
-  
   const addPost = (formData) => {
     props.addPost(formData.newPost);
-    changeSubmitted(submitted = true);
   };
 
   return (
