@@ -8,14 +8,12 @@ const StatusForm = (props) => {
   return (
     <form
       onSubmit={props.handleSubmit}
-      // onBlur={props.deactiveEditMode}
       className={s.statusForm}
     >
       <Field
         autoFocus={true}
-        // type="text"
+        type="text"
         name="status"
-        // defaultValue={props.status}
         id=""
         component={"input"}
       />

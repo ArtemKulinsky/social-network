@@ -5,7 +5,14 @@ import UsersList from "./UsersList";
 import Preloader from "../../common/preloader/Preloader";
 import { withAuthRedirect } from "../../../hoc/AuthRedirect";
 import { compose } from "redux";
-import { getCurrentPage, getIsFetching, getIsFollowingInProgress, getPageSize, getTotalUsersCount, getUsers } from "../../../Redux/users-reselect";
+import {
+  getCurrentPage,
+  getIsFetching,
+  getIsFollowingInProgress,
+  getPageSize,
+  getTotalUsersCount,
+  getUsers,
+} from "../../../Redux/users-reselect";
 
 class UsersListContainer extends React.Component {
    componentDidMount() {

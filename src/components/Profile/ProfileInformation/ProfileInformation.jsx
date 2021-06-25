@@ -1,6 +1,7 @@
 import React from 'react';
 import s from './ProfileInformation.module.css';
 import ProfileStatus from './ProfileStatus/ProfileStatus';
+import ProfileStatusWithHooks from './ProfileStatus/ProfileStatusWithHooks';
 
 const ProfileInformation = (props) => {
   return (
@@ -24,7 +25,7 @@ const ProfileInformation = (props) => {
         <p>City: Krasnodar</p>
         <p>Education: KubSU'21</p>
         <p>Web-site: https://vk.com/a.temik</p>
-        <ProfileStatus
+        <ProfileStatusWithHooks
           myId={props.myId}
           status={props.profileInformation.status}
           updateProfileStatus={props.updateProfileStatus}
