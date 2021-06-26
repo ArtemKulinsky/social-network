@@ -13,6 +13,7 @@ import ProfileContainer from './components/Profile/ProfileContainer';
 import Users from './components/Users/Users';
 import { initializeApp } from './Redux/App-reducer';
 import Preloader from './components/common/preloader/Preloader';
+import ProfileContainerWithHooks from './components/Profile/ProfileContainerWithHooks';
 
 class App extends React.Component {
   componentDidMount() { 
@@ -29,7 +30,7 @@ class App extends React.Component {
         <Aside asideReducer={this.props.appState.asideReducer} ></Aside>
         <main className="content">
           <Route path="/profile/:userId?" 
-          render={ () => <ProfileContainer/> } />
+          render={ () => <ProfileContainerWithHooks/> } />
           
           <Route path="/dialogs" 
             render={ () => <DialogsContainer />} />

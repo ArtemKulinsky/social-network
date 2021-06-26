@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Profile } from './Profile';
 import {
@@ -11,23 +11,25 @@ import { withAuthRedirect } from '../../hoc/AuthRedirect';
 import { compose } from 'redux';
 
 
-class ProfileContainer extends React.Component {
-  componentDidMount() {
-    let userId = this.props.match.params.userId; ////!Из данных, передаваемых с WithRouter
-    
+const ProfileContainerWithHooks = (props) => {
+  // componentDidMount() {
+  //   let userId = this.props.match.params.userId; ////!Из данных, передаваемых с WithRouter
+  //   if(userId) {
+  //     this.props.setProfile(userId);
+  //   } else {
+  //     this.props.setProfile(this.props.myId);
+  //   }
+  // }
+  let userId = props.match.params.userId; ////!Из данных, передаваемых с WithRouter
+
+  useEffect(() => {
     userId
-      ? this.props.setProfile(userId)
-      : this.props.setProfile(this.props.myId);
-  }
-  
-  render() {
-    return (
-      <Profile
-        {...this.props  }
-      />
-    );
-  }
-}
+      ? props.setProfile(userId)
+      : props.setProfile(props.myId);
+  }, [userId]);
+
+  return <Profile {...props} />;
+};
 
 let mapStateToProps = (state) => {
   return {
@@ -46,4 +48,4 @@ export default compose(
   }),
   withRouter,
   withAuthRedirect
-)(ProfileContainer);
+)(ProfileContainerWithHooks);
