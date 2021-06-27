@@ -1,14 +1,13 @@
 import React from "react";
 import s from "./Users.module.css";
-import UsersListContainer from "./UsersList/UsersListContainer";
-import UsersListContainerWithHooks from "./UsersList/UsersListContainerWithHooks";
+import UsersListContainer from "./UsersList/UsersListContainer"
 
 const Users = (props) => {
    return (
       <section className={s.users}>
          <div className={s.usersTitle}>Users</div>
          <div className={s.usersBody}>
-            <UsersListContainerWithHooks/>
+            <UsersListContainer/>
          </div>
       </section>
    )

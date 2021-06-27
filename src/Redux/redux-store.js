@@ -1,4 +1,4 @@
-import { applyMiddleware, combineReducers, createStore } from "redux";
+import { applyMiddleware, combineReducers, compose, createStore } from "redux";
 import asideReducer from "./Aside-reducer";
 import authReducer from "./Auth-reducer";
 import dialogsReducer from "./Dialogs-reducer";
@@ -19,9 +19,9 @@ let reducers = combineReducers({
    app: appReducer,
 });
 
-let store = createStore(reducers, applyMiddleware(thunkMiddleWare));
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const store = createStore(reducers, composeEnhancers(applyMiddleware(thunkMiddleWare)));
 
-window.store = store; //!Чтобы можно было обратиться к store через консоль
 window.axios = axios;
 
 export default store;

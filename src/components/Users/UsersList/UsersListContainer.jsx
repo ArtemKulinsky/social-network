@@ -1,45 +1,46 @@
 import { connect } from "react-redux";
 import { changeFollow, requestUsers } from "../../../Redux/Users-reducer";
 import React from "react";
-import UsersList from "./UsersList";
 import Preloader from "../../common/preloader/Preloader";
 import { withAuthRedirect } from "../../../hoc/AuthRedirect";
 import { compose } from "redux";
 import {
-  getCurrentPage,
-  getIsFetching,
-  getIsFollowingInProgress,
-  getPageSize,
-  getTotalUsersCount,
-  getUsers,
+   getCurrentPage,
+   getIsFetching,
+   getIsFollowingInProgress,
+   getPageSize,
+   getTotalUsersCount,
+   getUsers,
 } from "../../../Redux/users-reselect";
+import { useEffect } from "react";
+import UsersList from "./UsersList";
 
-class UsersListContainer extends React.Component {
-   componentDidMount() {
-      this.props.requestUsers(this.props.currentPage, this.props.pageSize);
-   }
+const UsersListContainer = (props) => {
+  let currentPage = props.currentPage;
+  let pageSize = props.pageSize;
 
-   onPageChanged = (pageNumber) => {
-      this.props.requestUsers(pageNumber, this.props.pageSize);
-   };
+  useEffect(() => {
+    props.requestUsers(currentPage, pageSize);
+  }, [currentPage, pageSize]);
 
-   render() {
-      return (
-         <>
-            {this.props.isFetching ? <Preloader /> : null}
-            <UsersList
-               totalUsersCount={this.props.totalUsersCount}
-               pageSize={this.props.pageSize}
-               currentPage={this.props.currentPage}
-               onPageChanged={this.onPageChanged}
-               users={this.props.users}
-               changeFollow={this.props.changeFollow}
-               isFollowingInProgress={this.props.isFollowingInProgress}
-            />
-         </>
-      );
-   }
-}
+  const onPageChanged = (pageNumber) => {
+    props.requestUsers(pageNumber, props.pageSize);
+  };
+  return (
+    <>
+      {props.isFetching ? <Preloader /> : null}
+      <UsersList
+        totalUsersCount={props.totalUsersCount}
+        pageSize={props.pageSize}
+        currentPage={props.currentPage}
+        onPageChanged={onPageChanged}
+        users={props.users}
+        changeFollow={props.changeFollow}
+        isFollowingInProgress={props.isFollowingInProgress}
+      />
+    </>
+  );
+};
 
 let mapStateToProps = (state) => {
    return {
@@ -53,8 +54,8 @@ let mapStateToProps = (state) => {
 }
 
 export default compose(
-   connect(mapStateToProps, { changeFollow, requestUsers }),
-   withAuthRedirect
+  connect(mapStateToProps, { changeFollow, requestUsers }),
+  withAuthRedirect
 )(UsersListContainer);
 
 

@@ -5,10 +5,10 @@ import s from "./LoginForm.module.css";
 
 const Input = Element("input")
 
-const LoginForm = (props) => {
+const LoginForm = ({handleSubmit, error}) => {
    return (
       <div className={s.formContainer}>
-         <form onSubmit={props.handleSubmit} className={s.form}>
+         <form onSubmit={handleSubmit} className={s.form}>
             <div className={s.login + " " + s.inputField}>
                <Field
                   validate={[required]}
@@ -26,8 +26,8 @@ const LoginForm = (props) => {
                   component={Input}
                />
             </div>
-            {props.error && (
-            <div className={s.formSummaryError}>{props.error}</div>
+            {error && (
+            <div className={s.formSummaryError}>{error}</div>
             )}
             <label className={s.remember}>
                <Field

@@ -2,7 +2,6 @@ import s from './MyPosts.module.css';
 import Posts from './Posts/Posts';
 import { NewPostReduxForm } from './NewPost/NewPost';
 import React from 'react';
-import { PureComponent } from 'react';
 
 const MyPosts = React.memo((props) => {
   let addPost = (formData) => {

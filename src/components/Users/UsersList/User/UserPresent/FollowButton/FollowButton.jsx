@@ -4,28 +4,7 @@ import s from "./FollowButton.module.css";
 const FollowButton = (props) => {
 
   let changeFollow = () => {
-    props.changeFollow(props.id, props.followed);
-    // props.toggleFollowingInProgress(true, props.id);
-
-    // if (props.followed) {
-    //   UsersAPI.unfollowUser(props.id).then((data) => {
-    //     if (!data.resultCode) {
-    //       let id = props.id;
-    //       props.onFollowClick(id);
-
-    //       props.toggleFollowingInProgress(false, props.id);
-    //     }
-    //   });
-    // } else {
-    //   UsersAPI.followUser(props.id).then((data) => {
-    //     if (!data.resultCode) {
-    //       let id = props.id;
-    //       props.onFollowClick(id);
-
-    //       props.toggleFollowingInProgress(false, props.id);
-    //     }
-    //   });
-    // }
+  props.changeFollow(props.id, props.followed);
   };
 
   return (

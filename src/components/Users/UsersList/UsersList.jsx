@@ -1,24 +1,37 @@
-import axios from "axios";
-import React from "react";
-import User from "./User/User";
+import React from 'react';
+import Paginator from '../../common/preloader/Paginator/Paginator';
+import User from './User/User';
 import s from "./UsersList.module.css";
 
-const UsersList = (props) => {
-  if (props.users.length === 0) {
+let UsersList = (props) => {
+   let pagesCount = Math.min(Math.ceil(props.totalUsersCount / props.pageSize), 10);
 
-  axios.get("https://social-network.samuraijs.com/api/1.0/users")
-        .then(response => {
-          props.setUsers(response.data.items);
-        });
-  }
-
-    return (
+   let pages = [];
+   for (let i = 1; i <= pagesCount; i++) {
+      pages.push(i);
+   }
+   
+   return (
       <div className={s.usersList}>
-        {props.users.map((user) => (
-          <User onFollowClick={props.changeFollow} user={user} key={user.id} />
-        ))}
+         <Paginator
+            totalUsersCount={props.totalUsersCount}
+            pageSize={props.pageSize}
+            currentPage={props.currentPage}
+            onPageChanged={props.onPageChanged}
+         />
+         {
+            props.users.map((user) => (
+               <User
+                  isFollowingInProgress={props.isFollowingInProgress}
+                  toggleFollowingInProgress={props.toggleFollowingInProgress}
+                  changeFollow={props.changeFollow}
+                  user={user}
+                  key={user.id}
+               />
+            ))
+         }
       </div>
-    );
+   );
 }
 
 export default UsersList;
