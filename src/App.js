@@ -1,7 +1,7 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { connect, Provider } from 'react-redux';
 import { Route } from 'react-router';
-import { withRouter } from 'react-router-dom';
+import { BrowserRouter, withRouter } from 'react-router-dom';
 import { compose } from 'redux';
 import './App.css';
 import Aside from './components/Aside/Aside';
@@ -13,6 +13,7 @@ import Users from './components/Users/Users';
 import { initializeApp } from './Redux/App-reducer';
 import Preloader from './components/common/preloader/Preloader';
 import ProfileContainer from './components/Profile/ProfileContainer'
+import store from './Redux/redux-store';
 
 class App extends React.Component {
   componentDidMount() { 
@@ -26,7 +27,7 @@ class App extends React.Component {
     return (
       <div className="wrapper">
         <HeaderContainer></HeaderContainer>
-        <Aside asideReducer={this.props.appState.asideReducer} ></Aside>
+        <Aside></Aside>
         <main className="content">
           <Route path="/profile/:userId?" 
           render={ () => <ProfileContainer/> } />
@@ -53,11 +54,20 @@ let mapStateToProps = (state) => {
   }
 }
 
-export default compose(
+let AppContainer = compose(
   withRouter,
   connect(mapStateToProps, {
     initializeApp,
   })
 )(App)
 
-// export default App;
+
+const MyApp = (props) => {
+  return <BrowserRouter>
+    <Provider store={store}>
+      <AppContainer/>
+    </Provider>
+  </BrowserRouter>
+}
+
+export default MyApp;

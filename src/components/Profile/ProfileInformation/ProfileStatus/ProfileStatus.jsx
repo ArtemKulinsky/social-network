@@ -5,7 +5,7 @@ import { StatusReduxForm } from './StatusForm/StatusForm';
 class ProfileStatus extends React.Component {
   state = {
     editMode: false,
-    status: "",
+    status: this.props.status,
   };
 
   activeEditMode = () => {
@@ -18,6 +18,7 @@ class ProfileStatus extends React.Component {
     this.setState({
       editMode: false,
     });
+    this.props.updateProfileStatus();
   };
 
   onSubmit = (formData) => {
@@ -42,7 +43,7 @@ class ProfileStatus extends React.Component {
         {!this.state.editMode && (
           <div>
             <span onDoubleClick={this.activeEditMode}>
-              Status: {this.props.status}
+              Status:{this.state.status}
             </span>
           </div>
         )}

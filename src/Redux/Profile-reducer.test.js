@@ -40,6 +40,7 @@ it('after deleting length of posts should be incremented', () => {
    // Делаем какие- то действия
    let newState = profileReducer(state, action);
 
+   
    // Заявляем об ожиданиях
    expect(newState.myPosts.posts.length).toBe(3);
 });
