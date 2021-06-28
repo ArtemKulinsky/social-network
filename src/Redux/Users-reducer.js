@@ -17,6 +17,7 @@ let initialState = {
       { id: 6, followed: false, userInf: {fullName: "Artem Schiva", status: "Опять приходил Артем, нажрался как сука", location: {city: "Краснодырск", country: "Russia"}} },
       { id: 7, followed: false, userInf: {fullName: "Grigoriy Kuznezov", status: "Ебу коменду за матрас", location: {city: "Междуреченск", country: "Russia"}} },
    */],
+   maxPagesToShowCount: 10,
    pageSize: 5,
    totalUsersCount: 0,
    currentPage: 1,

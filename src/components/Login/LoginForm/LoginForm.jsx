@@ -1,6 +1,6 @@
 import { Field, reduxForm } from "redux-form";
 import { required } from "../../../utils/vallidators/validators";
-import { Element } from "../../common/preloader/FormsControls/FormsControls";
+import { Element } from "../../common/FormsControls/FormsControls";
 import s from "./LoginForm.module.css";
 
 const Input = Element("input")

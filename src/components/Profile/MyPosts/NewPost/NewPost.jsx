@@ -1,7 +1,7 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { maxLengthCreator, required } from '../../../../utils/vallidators/validators';
-import { Element } from '../../../common/preloader/FormsControls/FormsControls';
+import { Element } from '../../../common/FormsControls/FormsControls';
 import s from './NewPost.module.css';
 
 const maxLength50 = maxLengthCreator(50);
