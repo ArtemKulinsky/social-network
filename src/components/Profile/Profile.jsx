@@ -12,13 +12,20 @@ const Profile = (props) => {
         {/* <ProfileHeader /> */}
         <ProfileInformation
           myId={props.myId}
+          status={props.status}
           profileInformation={props.profileInformation}
           updateProfileStatus={props.updateProfileStatus}
+          updateProfilePhotos={props.updateProfilePhotos}
+          updateProfileInf={props.updateProfileInf}
+          profilePhotoIsFetching={props.profilePhotoIsFetching}
+          toggleProfilePhotoIsFetching={props.toggleProfilePhotoIsFetching}
+          isOwner={props.isOwner}
         />
         <MyPosts
           addPost={props.addPost}
           updateNewPost={props.updateNewPost}
           myPosts={props.myPosts}
+          isOwner={props.isOwner}
         />
       </div>
     );

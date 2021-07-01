@@ -39,7 +39,7 @@
   flex: 1 1 auto;
 }
 
-.profileInformation__text p {
+.profileInformation__text .text_item {
   margin: 0 0 5px 0;
 }
 

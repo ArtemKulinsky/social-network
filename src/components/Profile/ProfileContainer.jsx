@@ -5,10 +5,14 @@ import {
   addPost,
   setProfile,
   updateProfileStatus,
+  updateProfilePhotos,
+  toggleProfilePhotoIsFetching,
+  updateProfileInf,
 } from "../../Redux/Profile-reducer";
 import { withRouter } from 'react-router-dom';
 import { withAuthRedirect } from '../../hoc/AuthRedirect';
 import { compose } from 'redux';
+import { getProfilePhotoIsFetching, getProfilePhotos } from "../../Redux/Profile-reselect";
 
 
 const ProfileContainer = (props) => {
@@ -20,20 +24,23 @@ const ProfileContainer = (props) => {
   //     this.props.setProfile(this.props.myId);
   //   }
   // }
-  let userId = props.match.params.userId; ////!Из данных, передаваемых с WithRouter
+  let userId = props.match.params.userId; ////!Из данных, передаваемых с WithRouter\
+  let myId = props.myId;
 
   useEffect(() => {
-    userId ? props.setProfile(userId) : props.setProfile(props.myId);
-  }, [userId]);
+    userId ? props.setProfile(userId) : props.setProfile(myId);
+  }, [userId, myId]);
 
-  return <Profile {...props} />;
+  return <Profile {...props} isOwner={!userId} />;
 };
 
 let mapStateToProps = (state) => {
   return {
     profileInformation: state.profileReducer.profileInformation,
     myPosts: state.profileReducer.myPosts,
-    status: state.profileReducer.profileInformation.status,
+    status: state.profileReducer.status,
+    photos: getProfilePhotos(state),
+    profilePhotoIsFetching: getProfilePhotoIsFetching(state),
     myId: state.auth.userId,
   };
 };
@@ -43,6 +50,9 @@ export default compose(
     setProfile,
     addPost,
     updateProfileStatus,
+    updateProfilePhotos,
+    toggleProfilePhotoIsFetching,
+    updateProfileInf,
   }),
   withRouter,
   withAuthRedirect

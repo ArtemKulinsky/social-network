@@ -10,14 +10,20 @@ const MyPosts = React.memo((props) => {
 
   return (
     <section className={s.myPosts}>
-      <h2 className={s.myPosts__title}>My posts</h2>
-      <NewPostReduxForm
-        onSubmit={addPost.bind(this)}
-        submitted={props.submitted}
-      />
-      <Posts posts={props.myPosts.posts} />
+      <h2 className={s.myPosts__title}>{props.isOwner
+          ? "My posts"
+          : "Posts"
+        }
+      </h2>
+      {props.isOwner && (
+        <NewPostReduxForm
+          onSubmit={addPost.bind(this)}
+          submitted={props.submitted}
+        />
+      )}
+      <Posts isOwner={props.isOwner} posts={props.myPosts.posts} />
     </section>
-  )
+  );
 })
 
 export default MyPosts;

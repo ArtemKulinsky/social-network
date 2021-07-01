@@ -9,8 +9,6 @@ const maxLength50 = maxLengthCreator(50);
 const TextArea = Element("textarea")
 
 const NewPostForm = (props) => {
-  // autofill("newPost", props.status);
-
   return (
     <div className={s.newPost}>
       <form onSubmit={props.handleSubmit} className={s.newPostAddNews}>

@@ -1,1 +1,3 @@
-.statusForm {}
+.statusForm {
+   display: inline-block;
+}
