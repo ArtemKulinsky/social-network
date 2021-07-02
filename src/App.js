@@ -1,11 +1,10 @@
 import React, { Suspense } from 'react';
 import { connect, Provider } from 'react-redux';
 import { Route } from 'react-router';
-import { BrowserRouter, withRouter } from 'react-router-dom';
+import { HashRouter, withRouter } from 'react-router-dom';
 import { compose } from 'redux';
 import './App.css';
 import Aside from './components/Aside/Aside';
-// import DialogsContainer from './components/Dialogs/DialogsContainer';
 import HeaderContainer from './components/Header/HeaderContainer';
 import Login from './components/Login/Login';
 import { Profile } from './components/Profile/Profile';
@@ -41,8 +40,9 @@ class App extends React.Component {
           <Route path="/news" component={ Profile } />
           <Route path="/music" component={ Profile } />
           <Route path="/settings" component={ Profile } />
+
           <Route path="/users" 
-            render={ () => <Users/> } />
+            render={ () => WithSuspense(Users) } />
           <Route path="/login" 
             render={ () => <Login/>} />
         </main>
@@ -66,11 +66,11 @@ let AppContainer = compose(
 
 
 const MyApp = (props) => {
-  return <BrowserRouter>
+  return <HashRouter>
     <Provider store={store}>
       <AppContainer/>
     </Provider>
-  </BrowserRouter>
+  </HashRouter>
 }
 
 export default MyApp;
