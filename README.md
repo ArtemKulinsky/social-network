@@ -1,1 +1,1 @@
-# social-network
+Social network, creating with ReactJs + Redux
