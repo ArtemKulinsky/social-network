@@ -32,3 +32,20 @@
    border: 1px solid red;
    color: red;
 }
+
+.captcha {
+   display: flex;
+   flex-direction: column;
+   max-width: 200px;
+}
+
+.captchaDescription {
+   margin: 0 0 15px 0;
+}
+
+.captchaImage {
+   max-width: 200px;
+   max-height: 100px;
+   background-color: #fff;
+   margin: 0 0 20px 0;
+}

@@ -33,17 +33,22 @@ export const AuthAPI = {
          .then(response => response.data.data);
    },
 
-   login(email, password, rememberMe) {
+   login(email, password, rememberMe, captcha) {
       return instance.post('auth/login', {
-         email: email,
-         password: password,
-         rememberMe: rememberMe
+         email,
+         password,
+         rememberMe,
+         captcha
       })
    },
 
    logout() {
       return instance.delete('auth/login');
-   }
+   },
+
+   captcha() {
+      return instance.get('security/get-captcha-url');
+   },
 }
 
 export const ProfileAPI = {

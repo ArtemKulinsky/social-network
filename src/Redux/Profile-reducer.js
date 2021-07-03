@@ -36,9 +36,9 @@ let initialState = {
    myPosts : {
       posts : [
          {id: 0, message: 'Hi! How are you?', likesCount: 1},
-         {id: 1, message: 'Hi! How are you?', likesCount: 4},
-         {id: 2, message: 'Hi! How are you?', likesCount: 3},
-         {id: 3, message: 'Hi! How are you?', likesCount: 2},
+         {id: 1, message: 'Hi! What`s up?', likesCount: 4},
+         {id: 2, message: 'Hi, man!', likesCount: 3},
+         {id: 3, message: 'Would you lika a coup of cofeee?', likesCount: 2},
       ],
    },
 }
@@ -47,9 +47,9 @@ const profileReducer = (state = initialState, action) => {
    switch (action.type) {
       case ADD_POST:{
          let newPost = {
-         id: state.myPosts.posts.length,
-         message: action.newPostText,
-         likesCount: 0,
+            id: state.myPosts.posts.length,
+            message: action.newPostText,
+            likesCount: 0,
          }
 
          return {

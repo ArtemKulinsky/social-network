@@ -5,7 +5,7 @@ import s from "./LoginForm.module.css";
 
 const Input = Element("input")
 
-const LoginForm = ({handleSubmit, error}) => {
+const LoginForm = ({handleSubmit, error, captcha}) => {
    return (
       <div className={s.formContainer}>
          <form onSubmit={handleSubmit} className={s.form}>
@@ -38,6 +38,20 @@ const LoginForm = ({handleSubmit, error}) => {
                />
                <span>Remember me</span>
             </label>
+            {captcha.isNeed &&
+               <div className={s.captcha}>
+                  <p className={s.captchaDescription}>Пожалуйста, подтвердите, что вы не бот</p>
+                  <div className={s.captchaImage}>
+                     <img src={captcha.imageURL}></img>
+                  </div>
+                  <Field
+                     type="text"
+                     name="captcha"
+                     component="input"
+                     className={s.inputField}
+                  />
+               </div>
+            }
             <div className={s.submit}>
                <button>Login</button>
             </div>
